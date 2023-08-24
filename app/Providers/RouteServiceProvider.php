@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -29,6 +29,18 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $this->routes(function () {
+            Route::domain('app.zmenu.test')
+                ->middleware('web')
+                ->group(base_path('routes/tenantadmin.php'));
+
+            Route::domain('admin.zmenu.test')
+                ->middleware('web')
+                ->group(base_path('routes/admin.php'));
+
+            Route::domain('{tenant}.zmenu.test')
+                ->middleware('web')
+                ->group(base_path('routes/tenant.php'));
+
             Route::middleware('api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));

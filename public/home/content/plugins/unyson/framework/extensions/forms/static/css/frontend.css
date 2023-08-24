@@ -1,0 +1,440 @@
+/* Step Style */
+.wrap-forms .wrap-step {
+  width: 100%;
+  display: block;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  background: #f7f7f7;
+  height: 52px;
+  margin-bottom: 37px;
+}
+
+.wrap-forms .wrap-step .steps {
+  list-style: none;
+  text-align: justify;
+  margin: 0;
+  padding: 11px 20px 0;
+}
+
+.wrap-forms .wrap-step .steps:after {
+  width: 100%;
+  height: 0;
+  content: "";
+  display: inline-block;
+}
+
+.wrap-forms .wrap-step .steps li {
+  display: inline-block;
+}
+
+.wrap-forms .wrap-step .steps .step {
+  color: #0f6ab8;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.wrap-forms .wrap-step .steps .step span {
+  background: #0f6ab8;
+  color: #fff;
+  font-size: 10px;
+  border-radius: 50%;
+  line-height: 15px;
+  vertical-align: text-bottom;
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  text-align: center;
+}
+
+.wrap-forms .wrap-step .steps li.active-step .step span {
+  background: #2b2b2b;
+}
+
+.wrap-forms .wrap-step .steps li.active-step .step,
+.wrap-forms .wrap-step .steps .step:hover,
+.wrap-forms .wrap-step .steps .step:hover strong {
+  color: #2b2b2b;
+  border-color: #2b2b2b;
+}
+
+.wrap-forms .wrap-step .steps .step:hover span {
+  background: #2b2b2b;
+}
+
+.wrap-forms .wrap-step .steps .step strong {
+  border-bottom: 1px solid #0f6ab8;
+}
+
+.wrap-forms .wrap-step .steps li.active-step .step strong {
+  border: none;
+}
+
+.wrap-forms .field-text,
+.wrap-forms .field-gap,
+.wrap-forms .field-textarea,
+.wrap-forms .field-select,
+.wrap-forms .field-upload,
+.wrap-forms .field-date,
+.wrap-forms .field-time,
+.wrap-forms .field-multiple,
+.wrap-forms .field-rating,
+.wrap-forms .field-table {
+  margin-bottom: 23px;
+  width: 100%;
+}
+
+.wrap-forms .field-checkbox,
+.wrap-forms .field-radio {
+  margin-bottom: 15px;
+}
+
+.wrap-forms .field-text.field-address {
+  margin-bottom: -8px;
+}
+
+.wrap-forms .field-multiple div[class*="field-"] {
+  width: 48%;
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.wrap-forms .wrap-rating .rating span {
+  font-size: 19px;
+}
+
+.wrap-forms .wrap-rating .rating-title {
+  margin-bottom: 19px;
+}
+
+.wrap-forms label,
+.wrap-forms input,
+.wrap-forms select {
+  width: 100%;
+}
+
+.wrap-forms .field-text.field-address input,
+.wrap-forms .field-text.field-address textarea,
+.wrap-forms .field-text.field-address select {
+  margin-bottom: 31px;
+}
+
+.wrap-forms .field-text.field-address input:last-child {
+  margin-bottom: 0;
+}
+
+.wrap-forms label {
+  font-size: 15px;
+  margin-bottom: 8px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.wrap-forms sup {
+  font-size: 16px;
+  color: #c0392b;
+  top: 0;
+  left: 2px;
+}
+
+.wrap-forms input,
+.wrap-forms select {
+  font-size: 14px;
+  height: 41px;
+  padding: 0 15px;
+}
+
+.wrap-forms textarea {
+  padding: 8px 15px;
+  height: 162px;
+  font-size: 14px;
+  line-height: 22px;
+  width: 100%;
+}
+
+.wrap-forms select {
+  border-color: #e5e5e5;
+}
+
+.wrap-forms .field-gap input.fill-gap {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  outline: none;
+  border-radius: 0;
+  border-bottom: 1px solid #808080;
+  text-align: left;
+  width: initial;
+  height: initial;
+}
+
+.wrap-forms .field-gap input.fill-gap:hover,
+.wrap-forms .field-gap input.fill-gap:focus {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #808080;
+  background: none;
+}
+
+.wrap-forms div[class*="field-"] .omega {
+  width: 48%;
+  display: inline-block;
+}
+
+.wrap-forms div[class*="field-"] .omega.omega-right,
+.wrap-forms div[class*="field-"] .omega-right {
+  float: right;
+}
+
+.wrap-forms .field-time .time {
+  width: 82%;
+  display: inline-block;
+}
+
+.wrap-forms .field-time .time-format {
+  width: 16%;
+  float: right;
+  display: inline-block;
+}
+
+.wrap-forms .field-upload .upload-file-input,
+.wrap-forms .field-upload .upload-file-button {
+  display: inline-block;
+  width: auto;
+}
+
+.wrap-forms .field-upload .upload-file-input {
+  width: 86%;
+}
+
+.wrap-forms .field-upload .upload-file-button {
+  float: right;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.wrap-forms .field-table table,
+th,
+td {
+  border-color: #e5e5e5;
+}
+
+.wrap-forms .field-table table thead tr td {
+  text-align: center;
+  background: #f7f7f7;
+  padding: 8px 20px;
+  min-height: 73px;
+  line-height: 52px;
+}
+
+.wrap-forms .field-table table thead tr td span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.wrap-forms .field-table table tbody tr td {
+  padding: 15px;
+  line-height: 20px;
+}
+
+.wrap-forms .field-table table tbody tr td.input-styled {
+  text-align: center;
+  padding: 0;
+}
+
+.wrap-forms .field-table table tbody tr td.input-styled .custom-radio {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.wrap-forms input:-moz-placeholder,
+.wrap-forms textarea:-moz-placeholder {
+  font-size: 14px;
+  font-weight: 400;
+  color: #9a9a9a;
+  text-transform: none;
+  font-style: italic;
+}
+
+.wrap-forms input::-moz-placeholder,
+.wrap-forms textarea::-moz-placeholder {
+  font-size: 14px;
+  font-weight: 400;
+  color: #9a9a9a;
+  text-transform: none;
+  font-style: italic;
+}
+
+.wrap-forms input:-ms-input-placeholder,
+.wrap-forms textarea:-ms-input-placeholder {
+  font-size: 14px;
+  font-weight: 400;
+  color: #9a9a9a;
+  text-transform: none;
+  font-style: italic;
+}
+
+.wrap-forms input::-webkit-input-placeholder,
+.wrap-forms textarea::-webkit-input-placeholder {
+  font-size: 14px;
+  font-weight: 400;
+  color: #9a9a9a;
+  font-style: italic;
+  text-transform: none;
+}
+
+.wrap-forms input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.wrap-forms textarea:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+/* Custom CheckBox  & Radio */
+/*-----------------------------------*/
+.wrap-forms .custom-checkbox,
+.wrap-forms .custom-radio {
+  position: relative;
+}
+
+.wrap-forms .custom-checkbox input,
+.wrap-forms .custom-radio input {
+  height: auto;
+  width: auto;
+  vertical-align: middle;
+}
+
+.wrap-forms .custom-checkbox::selection,
+.wrap-forms .custom-radio::selection {
+  background: transparent;
+  color: inherit;
+}
+
+.wrap-forms .custom-checkbox label,
+.wrap-forms .custom-radio label {
+  position: relative;
+  width: auto;
+  display: inline-block;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  min-height: 17px;
+}
+
+.wrap-forms .custom-checkbox label::selection,
+.wrap-forms .custom-radio label::selection {
+  background: transparent;
+  color: inherit;
+}
+
+.wrap-forms .custom-checkbox label.focus,
+.wrap-forms .custom-radio label.focus {
+  outline: none;
+}
+
+/* Section Break */
+.wrap-forms .section-break {
+  border-top: 1px solid #e5e5e5;
+  margin: 42px auto 39px;
+  padding-top: 25px;
+}
+
+.wrap-forms .section-break .title {
+  text-transform: uppercase;
+  font-size: 32px;
+  font-family: "Arial";
+  color: #333333;
+  font-weight: 400;
+  margin-bottom: 13px;
+}
+
+.wrap-forms .section-break .sub-title {
+  font-size: 13px;
+  font-family: "Arial";
+  font-weight: 400;
+  color: #595959;
+}
+
+.wrap-forms .nav-form {
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 29px;
+  margin-top: 48px;
+}
+
+.wrap-forms .nav-form .button.button-nav-form,
+.wrap-forms .nav-form .number-pages-form {
+  display: inline-block;
+}
+
+.wrap-forms .nav-form .button.button-nav-form {
+  border-top-left-radius: 0;
+  padding: 10px 20px;
+  font-weight: 400;
+}
+
+.wrap-forms .nav-form .number-pages-form {
+  color: #333333;
+  text-transform: uppercase;
+  font-size: 17px;
+  margin-top: 7px;
+}
+
+.wrap-forms .nav-form .button.button-nav-form.next {
+  float: right;
+}
+
+.wrap-forms .nav-form .button.button-nav-form.prev {
+  float: left;
+}
+
+/* layout */
+
+.wrap-forms .field-columns-0:after,
+.wrap-forms .field-columns-2:after,
+.wrap-forms .field-columns-3:after {
+  width: 100%;
+  height: 0;
+  content: "";
+  display: inline-block;
+}
+
+.wrap-forms .field-columns-0 .options,
+.wrap-forms .field-columns-2 .field-column,
+.wrap-forms .field-columns-3 .field-column {
+  float: left;
+  padding-right: 5px;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body.rtl .wrap-forms .field-columns-0 .options,
+body.rtl .wrap-forms .field-columns-2 .field-column,
+body.rtl .wrap-forms .field-columns-3 .field-column {
+  float: right;
+  padding-left: 5px;
+  padding-right: 0;
+}
+
+.wrap-forms .field-columns-0 .options {
+  padding-right: 15px;
+}
+
+.wrap-forms .field-columns-2 .field-column {
+  width: 50%;
+}
+
+.wrap-forms .field-columns-3 .field-column {
+  width: 33.3333%;
+}
+
+/* end: layout */
