@@ -1,63 +1,69 @@
-@extends('layouts.master2')
-@section('css')
-    <!-- Sidemenu-respoansive-tabs css -->
-    <link href="{{URL::asset('assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css')}}"
-          rel="stylesheet">
+@extends('layouts.dashboard-auth-layout')
+@section('title')
+    {{config('app.name')}} - Admin - Register
 @endsection
 @section('content')
-    <div class="container-fluid">
-        <div class="row no-gutter">
-            <!-- The image half -->
-            <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary-transparent">
-                <div class="row wd-100p mx-auto text-center">
-                    <div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
-                        <img src="{{URL::asset('assets/img/media/login.png')}}"
-                             class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                        </div>
+                        <form action="{{route('register')}}" method="POST" class="user">
+                            @csrf
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="text" name="first_name" class="form-control form-control-user"
+                                           id="exampleFirstName"
+                                           placeholder="First Name">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" name="last_name" class="form-control form-control-user"
+                                           id="exampleLastName"
+                                           placeholder="Last Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control form-control-user"
+                                       id="exampleInputEmail"
+                                       placeholder="Email Address">
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="password" name="password" class="form-control form-control-user"
+                                           id="exampleInputPassword" placeholder="Password">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control form-control-user"
+                                           id="exampleRepeatPassword" placeholder="Repeat Password">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-user btn-block">
+                                Register Account
+                            </button>
+                            <hr>
+                            <a href="#" class="btn btn-google btn-user btn-block">
+                                <i class="fab fa-google fa-fw"></i> Register with Google
+                            </a>
+                            <a href="#" class="btn btn-facebook btn-user btn-block">
+                                <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                            </a>
+                        </form>
+                        <hr>
+                        <div class="text-center">
+                            <a class="small" href="#">Forgot Password?</a>
+                        </div>
+                        <div class="text-center">
+                            <a class="small" href="{{route('login')}}">Already have an account? Login!</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- The content half -->
-            <div class="col-md-6 col-lg-6 col-xl-5 bg-white">
-                <div class="login d-flex align-items-center py-2">
-                    <!-- Demo content-->
-                    <div class="container p-0">
-                        <div class="row">
-                            <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
-                                <div class="card-sigin">
-                                    <div class="mb-5 d-flex">
-                                        <h1>Register</h1>
-                                    </div>
-                                    <div class="main-signup-header">
-                                        <form action="{{route('register')}}" method="POST">
-                                            @csrf
-                                            <x-input-a name="name" placeholder="Enter your name" label="Name" required/>
-                                            <x-input-a type="email" name="email" placeholder="Enter your email"
-                                                       label="Email" required/>
-                                            <x-input-a name="phone"
-                                                       placeholder="Enter phone number" label="Phone Number"
-                                                       required/>
-
-                                            <x-input-a type="password" name="password" placeholder="Enter your password"
-                                                       label="Password" required/>
-                                            <x-input-a type="password" name="password_confirmation"
-                                                       placeholder="Confirm Password" label="Confirm Password"
-                                                       required/>
-
-                                            <button class="btn btn-main-primary btn-block">Create Account</button>
-                                        </form>
-                                        <div class="main-signup-footer mt-5">
-                                            <p>Already have an account? <a href="{{route('login')}}">Sign
-                                                    In</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End -->
-                </div>
-            </div><!-- End -->
         </div>
     </div>
 @endsection
-@section('js')
-@endsection
+

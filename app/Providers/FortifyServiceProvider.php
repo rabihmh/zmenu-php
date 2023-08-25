@@ -24,7 +24,7 @@ class FortifyServiceProvider extends ServiceProvider
         $currentDomain = \request()->getHost();
         if (Str::contains($currentDomain, 'admin.zmenu.test')) {
             Config::set('fortify.guard', 'admin');
-            Config::set('fortify.passwords', 'admins');
+            Config::set('fortify.passwords', 'users');
             Config::set('fortify.prefix', 'admin/dashboard');
             Config::set('fortify.domain', 'admin.zmenu.test');
             //Config::set('fortify.features.0','');//disable registration for admin

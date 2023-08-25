@@ -38,8 +38,8 @@ services.
 
 Follow these steps to set up the project:
 
-1. Clone the repository: `git clone https://github.com/your-username/restaurant-app.git`
-2. Navigate to the project directory: `cd restaurant-app`
+1. Clone the repository: `git clone https://github.com/rabihmh/zmenu.git`
+2. Navigate to the project directory: `cd zmenu`
 3. Install composer dependencies: `composer install`
 4. Create a `.env` file: `cp .env.example .env`
 5. Generate an application key: `php artisan key:generate`

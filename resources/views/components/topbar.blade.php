@@ -197,8 +197,7 @@
                     Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal"
-                   data-target="#logoutModal">
+                <a class="dropdown-item" href="#"  onclick="document.getElementById('form-logout').submit()">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>
@@ -208,3 +207,6 @@
     </ul>
 
 </nav>
+<form action="{{route('logout')}}" method="POST" id="form-logout">
+    @csrf
+</form>
