@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Events\RestaurantCreatedEvent;
-use App\Listeners\RestaurantCreatedListener;
+use App\Listeners\MigrateDatabaseListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -20,7 +20,7 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         RestaurantCreatedEvent::class => [
-            RestaurantCreatedListener::class,
+            MigrateDatabaseListener::class,
         ]
     ];
 

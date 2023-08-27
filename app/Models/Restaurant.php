@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Restaurant extends Model
 {
@@ -17,9 +17,9 @@ class Restaurant extends Model
         'contact_info' => 'array'
     ];
 
-    public function user(): BelongsTo
+    public function user(): HasOne
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
     }
 
     public function categories(): HasMany

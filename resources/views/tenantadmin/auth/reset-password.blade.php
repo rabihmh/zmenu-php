@@ -1,6 +1,6 @@
 @extends('layouts.dashboard-auth-layout')
 @section('title')
-    {{config('app.name')}} - Rest Password
+    {{config('app.name')}} - Reset Password
 @endsection
 @section('content')
     <div class="row justify-content-center">
@@ -20,7 +20,7 @@
                                 <form class="user" action="{{route('password.update')}}" method="POST">
                                     @csrf
                                     <!-- Password Reset Token -->
-                                    <input type="hidden" name="token" value="old('email', $request->email)">
+                                    <input type="hidden" name="token" value="{{ $request->route('token') }}">
                                     <div class="form-group">
                                         <input class="form-control form-control-user" name="email" type="email"
                                                placeholder="Enter Email..." value="{{$request->email}}">
