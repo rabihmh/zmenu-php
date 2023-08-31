@@ -38,7 +38,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/admin.php'));
 
             Route::domain('{tenant}.zmenu.test')
-                ->middleware('web')
+                ->middleware(['web', 'setDbConnection'])
                 ->group(base_path('routes/tenant.php'));
 
             Route::middleware('api')

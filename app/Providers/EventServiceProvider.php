@@ -21,7 +21,8 @@ class EventServiceProvider extends ServiceProvider
         ],
         RestaurantCreatedEvent::class => [
             MigrateDatabaseListener::class,
-        ]
+        ],
+
     ];
 
     /**

@@ -67,5 +67,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'tenant' => testTenant::class,
         'ensure.restaurant' => \App\Http\Middleware\EnsureRestaurantExists::class,
+        'setDbConnection' => \App\Http\Middleware\SetDatabaseConnection::class,
+        'switch.connection' => \App\Http\Middleware\SwitchDatabase::class
     ];
 }

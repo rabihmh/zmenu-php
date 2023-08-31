@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\RestaurantCreatedEvent;
 use App\Managers\DatabaseManager;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class MigrateDatabaseListener
 {
@@ -22,7 +23,8 @@ class MigrateDatabaseListener
     public function handle(RestaurantCreatedEvent $event): void
     {
         $restaurant = $event->restaurant;
-        $db_name = 'tenancy_restaurant' . "_{$restaurant->name}";
+
+        $db_name = Str::slug('tenancy_restaurant' . "_{$restaurant->name}");
 
         DB::statement("CREATE DATABASE IF NOT EXISTS `{$db_name}`");
 

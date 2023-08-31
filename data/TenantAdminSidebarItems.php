@@ -1,28 +1,17 @@
 <?php
 return [
     [
-        'route' => '#',
+        'route' => 'tenant.admin.home',
         'icon' => 'fas fa-fw fa-tachometer-alt',
         'label' => 'Dashboard'
     ],
     [
-        'route' => '#',
         'icon' => 'fas fa-fw fa-table',
-        'label' => 'Table',
+        'label' => 'Categories',
         'submenu' => [
-            ['url' => '#', 'label' => 'index 1'],
-            ['url' => '#', 'label' => 'index 2'],
-            ['url' => '#', 'label' => 'index 3'],
+            ['url' => 'tenant.admin.categories.index', 'label' => 'index'],
+            ['url' => 'tenant.admin.categories.create', 'label' => 'Create'],
         ]
     ],
-    [
-        'route' => '#',
-        'icon' => 'fas fa-fw fa-table',
-        'label' => 'Order',
-        'submenu' => [
-            ['url' => '#', 'label' => 'index 1'],
-            ['url' => '#', 'label' => 'index 2'],
-            ['url' => '#', 'label' => 'index 3'],
-        ]
-    ]
+
 ];
