@@ -37,7 +37,7 @@
                    data-target="#submenu-{{ $loop->iteration }}"
                    aria-expanded="{{ $isActiveItem || $isActiveSubmenu ? 'true' : 'false' }}"
                    aria-controls="submenu-{{ $loop->iteration }}">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="{{$item['icon']}}"></i>
                     <span>{{ $item['label'] }}</span>
                 </a>
                 <div id="submenu-{{ $loop->iteration }}"

@@ -14,7 +14,7 @@
             <label for="name" class="form-label">Category photo</label>
             <input type="file" class="form-control-file" name="photo">
         </div>
-        @error('profile_photo')
+        @error('photo')
         <span class="text-danger">{{$message}}</span>
         @enderror
         <button type="submit" id="submit-button" class="btn btn-primary">Submit</button>

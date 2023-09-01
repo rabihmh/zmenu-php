@@ -71,7 +71,7 @@ class CategoriesController extends Controller
         $category->name = $request->post('name');
         $category->slug = Str::slug($request->post('name'));
         if ($request->hasFile('photo')) {
-            $this->deleteImage($request->file('photo'));
+            $this->deleteImage($category->photo);
             $photo_path = $this->uploadImage($request->file('photo'));
             $category->photo = $photo_path;
         }

@@ -13,5 +13,13 @@ return [
             ['url' => 'tenant.admin.categories.create', 'label' => 'Create'],
         ]
     ],
+    [
+        'icon' => 'fas fa-fw fa-wrench',
+        'label' => 'Products',
+        'submenu' => [
+            ['url' => 'tenant.admin.products.index', 'label' => 'index'],
+            ['url' => 'tenant.admin.products.create', 'label' => 'Create'],
+        ]
+    ],
 
 ];

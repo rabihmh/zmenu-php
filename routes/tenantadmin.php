@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TenantAdmin\CategoriesController;
 use App\Http\Controllers\TenantAdmin\HomeController;
+use App\Http\Controllers\TenantAdmin\ProductsController;
 use App\Http\Controllers\TenantAdmin\RestaurantController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,7 @@ Route::group(['middleware' => ['auth:web', 'ensure.restaurant'], 'as' => 'tenant
     });
     Route::middleware('switch.connection')->group(function () {
         Route::resource('categories', CategoriesController::class)->except('show');
+        Route::resource('products', ProductsController::class)->except('show');
     });
 
 });
