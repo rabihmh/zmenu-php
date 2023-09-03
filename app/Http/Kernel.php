@@ -2,7 +2,6 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\testTenant;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -65,7 +64,6 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'tenant' => testTenant::class,
         'ensure.restaurant' => \App\Http\Middleware\EnsureRestaurantExists::class,
         'setDbConnection' => \App\Http\Middleware\SetDatabaseConnection::class,
         'switch.connection' => \App\Http\Middleware\SwitchDatabase::class

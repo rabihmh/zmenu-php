@@ -1,0 +1,477 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html, body
+{
+    overscroll-behavior: contain;
+    height: 100%;
+    margin:0;
+    padding:0;
+}
+
+.splash {
+    position:relative;
+    height: 100%;
+    width:100%;
+}
+
+.splash img {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+    max-width: 300px;
+}
+
+
+.loader{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 180%;
+    z-index: 9999;
+    background: url('../images/loader.gif') 50% 50% no-repeat transparent;
+    background-size: 40px;
+}
+
+.expiryNotice{
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 65%;
+}
+
+body {
+    overflow-y: auto;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+header {
+    background-image: url("https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/healthy-eating-ingredients-1296x728-header.jpg?w=1155&h=1528");
+    background-size: cover;
+    position: sticky; /* Allocates space for the element, but moves it with you when you scroll */
+    top: 0; /* specifies the start position for the sticky behavior - 0 is pretty common */
+    width: 100%;
+    color: white;
+    margin: 0;
+    height: 200px;
+    z-index: 20000;
+    text-align: center;
+}
+
+.color-overlay:before{
+    position: absolute;
+    content:" ";
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display: block;
+    z-index:0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.branches-color-overlay:before{
+    position: absolute;
+    content:" ";
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display: block;
+    z-index:0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+h1 {
+    margin: 0;
+}
+
+div.big {
+    width: 100%;
+    min-height: 75%;
+}
+
+.carousel {
+    height: 200px;
+}
+
+.column {
+    float: left;
+}
+
+.left {
+    width: 35%;
+    height: 100%;
+}
+
+.right {
+    height: 100%;
+}
+
+.middle {
+    width: 45%;
+    height: 100%;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#myCarousel {
+    overflow: hidden;
+}
+
+.items-list-grid {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.list-group-item {
+    height: 105px;
+    display: inline-block;
+    border: 0;
+    padding: 0;
+    width: 100%;
+}
+
+button {
+    text-decoration: none;
+    margin: 50%;
+}
+
+button:active{
+    transform: translateY(1px);
+}
+
+.categoriesToggle.active{
+    font-weight: 500;
+}
+
+.nav-tabs {
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: -webkit-box;
+    display: -moz-box;
+    top: 85%;
+    width: 100%;
+    background: #fff;
+    position: absolute;
+}
+
+.nav-tabs > li {
+    float: none;
+}
+
+.item-image > div{
+    width: 70%;
+    margin: auto;
+    padding-top: 10%;
+}
+.item-image > div > img{
+    display: inline-block;
+    position: relative;
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.07);
+}
+.item-name{
+    font-weight: bold;
+    font-size: 15px;
+    padding-top: 22%;
+}
+
+.btn {
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    margin: 72% 0 0 0;
+    width: 60px;
+    height: 25px;
+    padding: 0px 0px;
+    font-size: 14px;
+    border-radius: 25px;
+}
+
+.default {
+    border-color: #b9b9b9;
+    color: #b9b9b9;
+}
+
+.default:hover {
+    background: #e7e7e7;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    border: none;
+}
+
+.nav-tabs {
+    border: none;
+}
+
+a{
+    text-decoration: none;
+    color: #555;
+}
+
+.row.item-title {
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    position: relative;
+    padding: 5% 30% 0 12%;
+}
+
+.row.item-title .item-image{
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+    top: -45px;
+    right: 0;
+}
+
+.row.item-description {
+    color: white;
+    font-size: 12px;
+    padding: 5% 12%;
+}
+
+.row.item-labels {
+    color: white;
+    font-size: 12px;
+    padding: 0 12% 5% 12%;
+}
+
+.badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1;
+    color: white;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #383737;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.price-badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1;
+    color: white;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 1px solid;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 4px 0;
+}
+
+.row.item-price{
+    padding: 0 12%;
+}
+
+.separator {
+    padding: 0 12%;
+}
+
+.separator > hr {
+    float: left;
+    width: 50%;
+}
+
+.center {
+    position: absolute;
+    width: 80%;
+    height: fit-content;
+    top: 45%;
+    left: 50%;
+    margin-left: -40%;
+    margin-top: -25%;
+    background-color: #555;
+    border-radius: 4%;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+    opacity: 0.9;
+    text-align: left;
+}
+
+.navigation{
+    color: #fff;
+    top: 40%;
+    left: 10%;
+    position: absolute;
+    width: 100px;
+    height: 50px;
+}
+
+.categoryTitle{
+    width: 100%;
+    top: 40%;
+    font-size: 25px;
+    position: absolute;
+}
+
+.form-container {
+    position:relative;
+    width:100%;
+}
+
+div form {
+    margin: auto;
+    max-width: 300px;
+}
+
+button.submit{
+    margin: 0;
+    background-color: #555;
+    border-color: #555;
+    color: #fff;
+    width: 80px;
+    height: 30px
+}
+
+button.skip{
+    margin: 0;
+    width: 80px;
+    height: 30px
+}
+
+.itemInfo{
+    color: #b9b9b9;
+    border: none;
+}
+
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 999999999;
+}
+
+.modal-dialog {
+    position: fixed;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.modal-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background-size: cover;
+}
+
+.modal-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100px;
+    padding: 10px;
+    border: 0;
+}
+
+.modal-body {
+    position: absolute;
+    top: 80px;
+    bottom: 60px;
+    width: 100%;
+    font-weight: 300;
+    overflow: auto;
+}
+
+.floatParent{
+    bottom: 18px;
+    right: 18px;
+    position: fixed;
+}
+.float{
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background-color: #77E637;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 25px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    margin-left: 10px;
+}
+
+.my-float{
+    margin-top: 11px;
+}
+
+.item-flag{
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    width: 20px;
+    height: 20px;
+}
+
+.item-flag-container{
+    background-color: #fff;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+
+.flags{
+    padding: 0 12%;
+}
+
+.flags>div.item-flag-container{
+    background-color: whitesmoke;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    bottom: unset;
+    right: unset;
+    position: inherit;
+    padding: 10px 10px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+
+.flags>div>.item-flag{
+    bottom: 3px;
+    right: 3px;
+    width: 20px;
+    height: 20px;
+    position: inherit;
+}

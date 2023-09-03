@@ -4,8 +4,10 @@ namespace App\Http\Controllers\TenantAdmin;
 
 use App\Events\RestaurantCreatedEvent;
 use App\Http\Controllers\Controller;
+use App\Managers\TenantDataManger;
 use App\Models\Restaurant;
 use App\Traits\UploadImageTrait;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -60,10 +62,12 @@ class RestaurantController extends Controller
 
     /**
      * Display the specified resource.
+     * @throws BindingResolutionException
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        $restaurant = Restaurant::where('id', TenantDataManger::getTenantRestaurant()->id)->first();
+        return view('tenantadmin.restaurant.show', compact('restaurant'));
     }
 
     /**

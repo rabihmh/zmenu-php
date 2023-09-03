@@ -10,7 +10,6 @@
     <meta name="author" content="">
 
     <title>{{$title}}</title>
-
     <!-- Custom fonts for this template-->
     <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link

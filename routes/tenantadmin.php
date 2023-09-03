@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth:web', 'ensure.restaurant'], 'as' => 'tenant.admin.'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::group(['prefix' => 'restaurant', 'as' => 'restaurant.'], function () {
+        Route::get('/', [RestaurantController::class, 'show'])->name('show');
         Route::get('create', [RestaurantController::class, 'create'])->name('create');
         Route::post('store', [RestaurantController::class, 'store'])->name('store');
     });

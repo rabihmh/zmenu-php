@@ -6,6 +6,11 @@ return [
         'label' => 'Dashboard'
     ],
     [
+        'route' => 'tenant.admin.restaurant.show',
+        'icon' => 'fas fa-fw fa-shopping-bag',
+        'label' => 'Restaurant'
+    ],
+    [
         'icon' => 'fas fa-fw fa-table',
         'label' => 'Categories',
         'submenu' => [
@@ -16,6 +21,14 @@ return [
     [
         'icon' => 'fas fa-fw fa-wrench',
         'label' => 'Products',
+        'submenu' => [
+            ['url' => 'tenant.admin.products.index', 'label' => 'index'],
+            ['url' => 'tenant.admin.products.create', 'label' => 'Create'],
+        ]
+    ],
+    [
+        'icon' => 'fas fa-fw fa-table',
+        'label' => 'Tables',
         'submenu' => [
             ['url' => 'tenant.admin.products.index', 'label' => 'index'],
             ['url' => 'tenant.admin.products.create', 'label' => 'Create'],

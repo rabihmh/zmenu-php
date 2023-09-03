@@ -34,10 +34,12 @@ class CategoriesController extends Controller
         {
             $validatedData = $request->validate([
                 'name' => 'required|string',
-                'photo' => 'required|image|mimes:jpeg,png,jpg',
+                'photo' => 'nullable|image|mimes:jpeg,png,jpg',
             ]);
-
-            $imagePath = $this->uploadImage($request->file('photo'));
+            $imagePath = null;
+            if ($request->hasFile('photo')) {
+                $imagePath = $this->uploadImage($request->file('photo'));
+            }
 
             $category = new Category([
                 'name' => $validatedData['name'],
