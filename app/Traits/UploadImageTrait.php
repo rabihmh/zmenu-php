@@ -2,16 +2,14 @@
 
 namespace App\Traits;
 
-use Illuminate\Support\Str;
-
 trait UploadImageTrait
 {
-    public function uploadImage($image): string
+    public function uploadImage($image, $folder, $disk = 'public'): string
     {
-        $imageName = Str::random(20) . '.' . $image->getClientOriginalExtension();
-        $image->storeAs('uploads', $imageName, ['disk' => 'public']);
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->storeAs("uploads/{$folder}", $imageName, ['disk' => $disk]);
 
-        return $imageName;
+        return "uploads/{$folder}/{$imageName}";
     }
 
 }

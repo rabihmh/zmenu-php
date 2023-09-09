@@ -30,8 +30,8 @@ return [
         'icon' => 'fas fa-fw fa-table',
         'label' => 'Tables',
         'submenu' => [
-            ['url' => 'tenant.admin.products.index', 'label' => 'index'],
-            ['url' => 'tenant.admin.products.create', 'label' => 'Create'],
+            ['url' => 'tenant.admin.tables.index', 'label' => 'index'],
+            ['url' => 'tenant.admin.tables.create', 'label' => 'Create'],
         ]
     ],
 

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\TenantAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Managers\TenantDataManger;
 use App\Models\Category;
 use App\Traits\DeleteImageTrait;
 use App\Traits\UploadImageTrait;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -28,6 +30,7 @@ class CategoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      * @throws ValidationException
+     * @throws BindingResolutionException
      */
     public function store(Request $request)
     {
@@ -38,7 +41,7 @@ class CategoriesController extends Controller
             ]);
             $imagePath = null;
             if ($request->hasFile('photo')) {
-                $imagePath = $this->uploadImage($request->file('photo'));
+                $imagePath = $this->uploadImage($request->file('photo'), Str::slug(TenantDataManger::getTenantRestaurant()->name));
             }
 
             $category = new Category([
@@ -62,6 +65,7 @@ class CategoriesController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @throws BindingResolutionException
      */
     public function update(Request $request, string $id)
     {
@@ -74,7 +78,7 @@ class CategoriesController extends Controller
         $category->slug = Str::slug($request->post('name'));
         if ($request->hasFile('photo')) {
             $this->deleteImage($category->photo);
-            $photo_path = $this->uploadImage($request->file('photo'));
+            $photo_path = $this->uploadImage($request->file('photo'), Str::slug(TenantDataManger::getTenantRestaurant()->name));
             $category->photo = $photo_path;
         }
         $category->save();

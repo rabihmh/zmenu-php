@@ -18,6 +18,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('dashboard/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.css') }}" rel="stylesheet">
     @stack('css')
 </head>
 
@@ -68,7 +69,6 @@
 
 <!-- Core plugin JavaScript-->
 <script src="{{ asset('dashboard/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('dashboard/js/sb-admin-2.min.js') }}"></script>
 @stack('js')

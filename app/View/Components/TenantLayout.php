@@ -2,7 +2,6 @@
 
 namespace App\View\Components;
 
-use App\Managers\TenantDataManger;
 use App\Models\Category;
 use App\Models\Restaurant;
 use Closure;

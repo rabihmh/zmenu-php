@@ -55,7 +55,7 @@
                             <td>{{$product->price}}</td>
                             <td>
                                 <div class="image-container">
-                                    <img class="category-image" src="{{asset('storage/uploads/'.$product->photo)}}">
+                                    <img class="category-image" src="{{asset('storage/'.$product->photo)}}">
                                 </div>
                             </td>
                             <td class="d-flex">

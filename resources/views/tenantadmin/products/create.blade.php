@@ -1,6 +1,6 @@
 <x-tenant-admin-layout title="Add Product">
     <h2 class="text-center">Add Product</h2>
-    <form id="restaurant-form" action="{{ route('tenant.admin.products.store') }}" method="POST"
+    <form action="{{ route('tenant.admin.products.store') }}" method="POST"
           enctype="multipart/form-data">
         @csrf
         <div class="mb-3">

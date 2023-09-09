@@ -202,10 +202,10 @@
                 <div class="row separator">
                     <hr style="width: 80%;float: none">
                 </div>
-                @php
-                    $contactInfo = json_decode($restaurant->contact_info, true);
-                @endphp
-                @forelse($contactInfo as $key=>$value)
+{{--                @php--}}
+{{--                    $contactInfo = json_decode($restaurant->contact_info, true);--}}
+{{--                @endphp--}}
+                @forelse($restaurant->contact_info as $key=>$value)
                     <div style="text-align: center; color: white;">
                         <strong>{{$key}}</strong>
                         <br>
@@ -251,13 +251,13 @@
             <!-- body -->
             <div class="modal-body" style="overflow-x: hidden;top: 0;bottom: 0;padding: 0">
                 <div class="loader splash" style="display: block;"></div>
-                <div class="itemModalContent" style="display: none;"></div>
+                <div class="itemModalContent" style="display: none;">
+
+                </div>
             </div>
             <!-- body -->
-
         </div>
         <!-- content -->
-
     </div>
     <!-- dialog -->
 

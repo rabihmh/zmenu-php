@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\TenantAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Managers\TenantDataManger;
 use App\Models\Category;
 use App\Models\Product;
 use App\Traits\DeleteImageTrait;
 use App\Traits\UploadImageTrait;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductsController extends Controller
 {
@@ -34,6 +37,7 @@ class ProductsController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @throws BindingResolutionException
      */
     public function store(Request $request): RedirectResponse
     {
@@ -55,7 +59,7 @@ class ProductsController extends Controller
         $productsData = $request->except('photo');
 
         if ($request->hasFile('photo')) {
-            $image_path = $this->uploadImage($request->file('photo'));
+            $image_path = $this->uploadImage($request->file('photo'),Str::slug(TenantDataManger::getTenantRestaurant()->name));
             $productsData['photo'] = $image_path;
         }
 
@@ -78,6 +82,7 @@ class ProductsController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @throws BindingResolutionException
      */
     public function update(Request $request, string $id)
     {
@@ -92,7 +97,7 @@ class ProductsController extends Controller
         $product_data = $request->except('photo');
         if ($request->hasFile('photo')) {
             $this->deleteImage($product->photo);
-            $newImagePath = $this->uploadImage($request->file('photo'));
+            $newImagePath = $this->uploadImage($request->file('photo'),Str::slug(TenantDataManger::getTenantRestaurant()->name));
             $product_data['photo'] = $newImagePath;
         }
         $product->update($product_data);

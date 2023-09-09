@@ -2,6 +2,7 @@
 
 namespace App\Managers;
 
+use Database\Seeders\TenantCategoriesSeeder;
 use DirectoryIterator;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
@@ -30,6 +31,10 @@ class DatabaseManager
                 ]);
             }
         }
+        Artisan::call('db:seed', [
+            '--force' => true,
+            '--class' => TenantCategoriesSeeder::class
+        ]);
     }
 
     public static function switchBackToMainConnection(): void

@@ -171,6 +171,9 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\TenantServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
+
     ])->toArray(),
 
     /*
@@ -186,6 +189,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
     ])->toArray(),
 
 ];

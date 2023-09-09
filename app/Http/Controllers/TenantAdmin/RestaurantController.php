@@ -7,20 +7,21 @@ use App\Http\Controllers\Controller;
 use App\Managers\TenantDataManger;
 use App\Models\Restaurant;
 use App\Traits\UploadImageTrait;
+use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class RestaurantController extends Controller
 {
     use UploadImageTrait;
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('tenantadmin.restaurant.create');
@@ -29,35 +30,33 @@ class RestaurantController extends Controller
     /**
      * Store a newly created resource in storage.
      * @throws ValidationException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-
         Validator::make($request->all(), [
             'name' => 'required|string',
             'domain' => 'required|string',
             'profile_photo' => 'required|image|mimes:jpeg,png,jpg',
             'contact_info' => 'required|json'
         ])->validate();
-        $uploadedImagePath = $this->uploadImage($request->file('profile_photo'));
+        $uploadedImagePath = $this->uploadImage($request->file('profile_photo'), Str::slug($request->post('name')),);
         DB::beginTransaction();
         try {
-            $restaurant_data = $request->except('profile_photo');
+            $restaurant_data = $request->except('profile_photo', 'contact_info');
             $restaurant_data['profile_photo'] = $uploadedImagePath;
+            $restaurant_data['contact_info'] = json_decode($request->input('contact_info'));
             $restaurant = Restaurant::create($restaurant_data);
             $user = Auth::guard('web')->user();
             $user->restaurant_id = $restaurant->id;
             $user->save();
-            DB::commit();
             event(new RestaurantCreatedEvent($restaurant));
+            DB::commit();
             return redirect()->back()->with('success', 'Restaurant created successfully');
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             DB::rollBack();
             throw $exception;
         }
-
-
     }
 
     /**
@@ -70,20 +69,13 @@ class RestaurantController extends Controller
         return view('tenantadmin.restaurant.show', compact('restaurant'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        return $request->all();
     }
 
     /**
@@ -97,7 +89,7 @@ class RestaurantController extends Controller
     /**
      * @throws ValidationException
      */
-    public function checkDomain(Request $request)
+    public function checkDomain(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
             'domain' => [

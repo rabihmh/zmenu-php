@@ -13,7 +13,10 @@ return new class extends Migration {
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
             $table->integer('table_number')->unique();
-            $table->string('qr_code');
+            $table->enum('status', ['occupied', 'available', 'reserved', 'closed'])->default('available');
+            $table->integer('capacity');
+            $table->string('description')->nullable();
+            $table->string('qr_code_path');
             $table->timestamps();
         });
     }

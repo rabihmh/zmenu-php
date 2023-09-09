@@ -475,3 +475,227 @@ button.skip{
     height: 20px;
     position: inherit;
 }
+.list-group-item .item-description {
+    font-size: 11px;
+    height: 30px;
+    margin-bottom: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-wrap: break-word;
+    width: 90%;
+}
+
+.list-group-item .item-image {
+    padding: 10px 0;
+    width: 25%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+}
+
+.list-group-item .item-data {
+    width: 55%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.list-group-item .item-price {
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+.list-group-item .item-name {
+    margin: 10px 0;
+    font-weight: normal;
+    font-size: 15px;
+    padding: 0;
+}
+
+.list-group-item {
+    height: auto;
+    display: grid;
+    border: 0;
+    padding: 0;
+    width: 100%;
+    align-content: center;
+    align-items: center;
+    background: transparent;
+    margin: 15px 0;
+}
+
+.column {
+    display: table;
+    background: white;
+    border-radius: 5px;
+    padding: 0 4%;
+}
+
+.list-group-item .item-image > div {
+    width: 25px;
+    margin: inherit;
+    padding-top: 0;
+    bottom: 0;
+    right: 2%;
+    left: inherit;
+}
+
+.list-group-item .item-image > div > img {
+    display: inline-block;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0px 0px 0px 1px rgb(0 0 0 / 7%);
+}
+
+.list-group-item .item-flag {
+    bottom: -2px;
+    left: -5px;
+}
+
+.category-items-container {
+    padding: 0 5%;
+}
+
+.category-title {
+    font-size: 20px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.item-img-element {
+    border-radius: 8px;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #d9d9d9;
+}
+.itemInfoMain {
+    position: absolute;
+    width: 80%;
+    height: fit-content;
+    top: 44%;
+    left: 50%;
+    margin-left: -40%;
+    margin-top: -25%;
+    background-color: #fff;
+    box-shadow: 3px 4px 12px 2px rgb(0 0 0 / 15%);
+    text-align: left;
+    border-radius: 12px;
+    min-height: 90px;
+}
+
+.itemInfoContent {
+    position: absolute;
+    width: 100%;
+    padding: 0 15px;
+}
+
+.itemInfoHeader {
+    height: 38%;
+    margin-bottom: 55px;
+    border-bottom: 1px solid #3333332e;
+}
+
+.item-reviews {
+    padding: 0 12%;
+}
+
+.rating {
+    display: inline-block;
+    position: relative;
+    height: 12px;
+    font-size: 14px;
+    float: right;
+}
+
+.rating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    cursor: pointer;
+}
+
+.rating label:last-child {
+    position: static;
+}
+
+.rating label:nth-child(1) {
+    z-index: 5;
+}
+
+.rating label:nth-child(2) {
+    z-index: 4;
+}
+
+.rating label:nth-child(3) {
+    z-index: 3;
+}
+
+.rating label:nth-child(4) {
+    z-index: 2;
+}
+
+.rating label:nth-child(5) {
+    z-index: 1;
+}
+
+.rating label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.rating label .icon {
+    float: left;
+    color: transparent;
+}
+
+.rating label:last-child .icon {
+    color: #333;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon {
+    color: #09f;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+    color: #333;
+    text-shadow: 0 0 5px #09f;
+}
+
+.customersRatingContainer {
+    display: table;
+    width: 100%;
+    padding: 5px 0;
+}
+
+.customersRatingInfo {
+    font-size: 14px;
+}
+
+.customersRating {
+    display: table-cell;
+}
+
+.customersRatingMessage {
+    display: table-row;
+}
+
+.row.item-reviews {
+    color: #333;
+    font-size: 12px;
+    padding: 20px 12% 20px 12%;
+}
+
+.row.item-price {
+    padding: 20px 12% 20px 12%;
+}
+
+.row.item-description {
+    padding: 20px 12% 20px 12%;
+}
+

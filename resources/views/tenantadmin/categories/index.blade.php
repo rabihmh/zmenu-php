@@ -46,7 +46,7 @@
                             <td>{{$category->name}}</td>
                             <td>
                                 <div class="image-container">
-                                    <img class="category-image" src="{{asset('storage/uploads/'.$category->photo)}}">
+                                    <img class="category-image" src="{{asset('storage/'.$category->photo)}}">
                                 </div>
                             </td>
                             <td class="d-flex">
