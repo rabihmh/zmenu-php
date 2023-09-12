@@ -16,5 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('mainHome');
 });
-Route::get('test', fn() => phpinfo());
 

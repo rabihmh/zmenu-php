@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\CustomerSeated;
 use App\Events\RestaurantCreatedEvent;
 use App\Listeners\MigrateDatabaseListener;
+use App\Listeners\NotifyAdminOnCustomerSeated;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         RestaurantCreatedEvent::class => [
             MigrateDatabaseListener::class,
         ],
+        CustomerSeated::class => [
+            NotifyAdminOnCustomerSeated::class
+        ]
 
     ];
 

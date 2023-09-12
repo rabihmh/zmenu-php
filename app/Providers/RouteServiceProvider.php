@@ -30,7 +30,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             Route::domain('app.zmenu.test')
-                ->middleware('web')
+                ->middleware(['web', 'notification.read'])
                 ->group(base_path('routes/tenantadmin.php'));
 
             Route::domain('admin.zmenu.test')

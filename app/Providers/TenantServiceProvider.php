@@ -16,7 +16,6 @@ class TenantServiceProvider extends ServiceProvider
         $this->app->singleton(User::class, function () {
             return auth()->user();
         });
-
         $this->app->singleton(Restaurant::class, function () {
             return auth()->user()->restaurant;
         });

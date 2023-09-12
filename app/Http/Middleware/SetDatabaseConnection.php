@@ -24,8 +24,9 @@ class SetDatabaseConnection
             $host = $request->getHost();
 
             $restaurant = Restaurant::where('domain', $host)->firstOrFail();
-
+            $user = $restaurant->user;
             app()->instance('restaurant.active', $restaurant);
+            app()->instance('restaurant.user.active', $user);
             DatabaseManager::switchConnection($restaurant->database_options['db_name']);
 
         } catch (ModelNotFoundException $exception) {

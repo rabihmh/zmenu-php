@@ -5,8 +5,8 @@
     </div>
     @push('js')
         <script>
-            const menuItemsListRoute = '{{ route('tenant.menu.items', getSubdomain()) }}';
-            const menuItemRoute = '{{route('tenant.menu.items.show',getSubdomain())}}';
+            const menuItemsListRoute = '{{ route('tenant.menu.items', ['table_number' => request()->route('table_number'), 'tenant' => getSubdomain()]) }}';
+            const menuItemRoute = '{{ route('tenant.menu.items.show', ['table_number' => request()->route('table_number'), 'tenant' => getSubdomain()]) }}';
             const assetUrl = '{{ asset('storage/') }}';
             const csrfToken = '{{ csrf_token() }}';
         </script>

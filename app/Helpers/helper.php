@@ -12,3 +12,4 @@ function getSubdomain(): string
         return '';
     }
 }
+
