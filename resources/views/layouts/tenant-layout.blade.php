@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -13,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{asset('tenant/css/menu.css')}}" rel="stylesheet"/>
-@stack('css')
+    @stack('css')
 </head>
 <body>
 <!-- Ads modal -->
@@ -43,120 +42,6 @@
 
 </div>
 <!-- Ads modal -->
-
-
-<style>
-    .floatParent {
-        position: fixed;
-        left: 50%;
-        bottom: 0;
-        right: initial;
-        transform: translate(-50%, -50%);
-        margin: 0 auto;
-        background-color: #fff;
-        border-radius: 50px;
-        text-align: center;
-        font-size: 25px;
-        box-shadow: 2px 2px 3px #999;
-        z-index: 100;
-        padding: 0;
-    }
-
-    .float {
-        color: #555;
-        background-color: transparent !important;
-        box-shadow: none;
-        border: none;
-        margin: 0;
-        border-radius: 0;
-    }
-
-    .floatParent a:focus, .floatParent a:hover {
-        color: #555;
-    }
-
-    .fb_dialog_content iframe {
-        right: auto !important;
-        margin: -6px 12px !important;
-    }
-
-    .color-overlay {
-        position: fixed;
-    }
-
-    .big {
-        margin-top: 200px;
-        background: #f5f5f5;
-    }
-
-    .categoriesToggle {
-        height: 35px;
-        font-weight: normal;
-        font-size: 12px;
-    }
-
-    .categorySwitch.active {
-        background-color: black !important;
-        border-radius: 25px;
-        color: white;
-        font-weight: normal;
-        font-size: 12px;
-    }
-
-    .nav-tabs {
-        padding: 8px;
-        background: #f5f5f5;
-    }
-
-    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
-        color: white;
-        cursor: default;
-        background-color: transparent;
-        border-bottom-color: transparent;
-    }
-
-    .nav > li > a:focus, .nav > li > a:hover {
-        background-color: transparent;
-        border: transparent;
-    }
-
-    header {
-        background-size: cover;
-        background-position: center;
-        height: 170px;
-    }
-
-    .nav-tabs > li {
-        margin-bottom: 6px;
-    }
-
-    .nav > li > a {
-        padding: 9px 15px;
-    }
-
-    #menu-items {
-        padding-top: 20px;
-    }
-
-    .itemModalContent {
-        height: 100%;
-    }
-
-    #itemMoreInfo .modal-content {
-        width: 25%;
-    }
-
-    @media only screen and (max-width: 600px) {
-        #itemMoreInfo .modal-content {
-            width: 100% !important;
-        }
-
-        #itemMoreInfo .itemInfoMain {
-            top: 42% !important;
-        }
-    }
-
-</style>
 <header class="color-overlay"
         style="background-image: url({{asset('tenant/images/background.jpg')}})">
     <div class="categoryTitle">MENU</div>
@@ -202,9 +87,6 @@
                 <div class="row separator">
                     <hr style="width: 80%;float: none">
                 </div>
-{{--                @php--}}
-{{--                    $contactInfo = json_decode($restaurant->contact_info, true);--}}
-{{--                @endphp--}}
                 @forelse($restaurant->contact_info as $key=>$value)
                     <div style="text-align: center; color: white;">
                         <strong>{{$key}}</strong>
@@ -232,12 +114,25 @@
 
 </div>
 <!-- branches modal -->
-
+<!--Branch div-->
 <div class="floatParent">
     <a class="branchesInfo float" href="#" style="background-color: #555;">
         <i class="fa fa-phone my-float"></i>
     </a>
 </div>
+<!--End Branch div-->
+<!--Cart Modal-->
+<x-tenant-cart/>
+<!--End Card Modal-->
+<!-- Cart div -->
+<div class="cartParent">
+    <a class="cartButton float" href="#" style="background-color: #555;">
+        <i class="fa fa-shopping-cart my-float"></i>
+        <span id="cartItemCount">0</span> <!-- This span will display the product count -->
+
+    </a>
+</div>
+<!-- End Cart div -->
 
 <!-- item description modal -->
 <div id="itemMoreInfo" class="modal animated bounceIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -273,6 +168,9 @@
 
     $('.branchesInfo').off('click').on('click', function () {
         $('#branchesInfo').modal('show');
+    });
+    $('.cartButton').off('click').on('click', function () {
+        $('#cartModal').modal('show');
     });
 
     // if (localStorage.getItem('customerId') != null) {

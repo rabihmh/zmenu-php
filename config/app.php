@@ -172,6 +172,7 @@ return [
         App\Providers\TenantServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        App\Providers\CartServiceProvider::class,
 
 
     ])->toArray(),

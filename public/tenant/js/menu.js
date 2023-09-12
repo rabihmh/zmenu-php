@@ -148,10 +148,35 @@ $(document).ready(function () {
             <div class="itemInfoContent">
                 ${descriptionHtml}
                 ${ratingsHtml}
-            </div>`;
+            </div>
+ <div><a href="#" id="addToCartButton" data-id="${product.id}" class="btn btn-primary">Add to Cart</a></div>`;
+
+
         $('#itemMoreInfo .modal-body .loader').hide();
         $('#itemMoreInfo .modal-body .itemModalContent').show();
         $('#itemMoreInfo .modal-body .itemModalContent').html(content);
+
+        $('#addToCartButton').click(function () {
+            const productId = $(this).data('id');
+
+            $.ajax({
+                method: 'POST',
+                url: addToCartRoute,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                data: {product_id: productId, quantity: 1},
+                success: function (response) {
+                    // Handle the success response from the server
+                    console.log('Item added to cart with ID:', productId);
+                    console.log('Server response:', response);
+                },
+                error: function (error) {
+                    // Handle any errors that occur during the AJAX request
+                    console.error('Error adding item to cart:', error);
+                }
+            });
+        });
         // if (localStorage.getItem('customerId') != null) {
         //     $('#feedbackForm').show();
         //
@@ -171,23 +196,19 @@ $(document).ready(function () {
         // }
     }
 });
-$('input[name="item_rating"]').off('change').on('change', function(){
+$('input[name="item_rating"]').off('change').on('change', function () {
     $('#itemMoreInfo .modal-body .loader').show();
     var feedbackMessage = '';
 
-    if($(this).val() == 5){
+    if ($(this).val() == 5) {
         feedbackMessage = "I love it";
-    }
-    else if($(this).val() == 4){
+    } else if ($(this).val() == 4) {
         feedbackMessage = "I like it";
-    }
-    else if($(this).val() == 3){
+    } else if ($(this).val() == 3) {
         feedbackMessage = "It is good";
-    }
-    else if($(this).val() == 2){
+    } else if ($(this).val() == 2) {
         feedbackMessage = "I don't like it";
-    }
-    else if($(this).val() == 1){
+    } else if ($(this).val() == 1) {
         feedbackMessage = "I hate it";
     }
 
@@ -195,7 +216,7 @@ $('input[name="item_rating"]').off('change').on('change', function(){
 
     $.ajax({
         method: 'GET',
-        url: '/'+'naboulsi'+'/customerFeedback',
+        url: '/' + 'naboulsi' + '/customerFeedback',
         data: {
             customerId: localStorage.getItem('customerId'),
             slug: "naboulsi",
