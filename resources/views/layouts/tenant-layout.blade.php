@@ -128,7 +128,7 @@
 <div class="cartParent">
     <a class="cartButton float" href="#" style="background-color: #555;">
         <i class="fa fa-shopping-cart my-float"></i>
-        <span id="cartItemCount">0</span> <!-- This span will display the product count -->
+        <span id="cartItemCount">{{\App\Facades\Cart::get()->count()}}</span> <!-- This span will display the product count -->
 
     </a>
 </div>
@@ -147,7 +147,8 @@
             <div class="modal-body" style="overflow-x: hidden;top: 0;bottom: 0;padding: 0">
                 <div class="loader splash" style="display: block;"></div>
                 <div class="itemModalContent" style="display: none;">
-
+                    <!-- Container for SweetAlert notifications -->
+                    <div id="sweetAlertContainer"></div>
                 </div>
             </div>
             <!-- body -->
@@ -163,6 +164,8 @@
 <script src="{{ asset('dashboard/vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{asset('tenant/js/ads.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
 
 
@@ -190,19 +193,19 @@
     // }
     //
     //
-    // $(window).scroll(function () {
-    //     var position = $(this).scrollTop();
-    //     $('.category-items-container').each(function () {
-    //         if (position + 500 > $(this).position().top) {
-    //             var categoryId = $(this).attr('id');
-    //             if (!$('a[href="#' + categoryId + '"]').hasClass('active')) {
-    //                 $('.categorySwitch').removeClass('active');
-    //                 $('a[href="#' + categoryId + '"]').addClass('active');
-    //                 $('ul.nav-tabs').scrollLeft($('a[href="#' + categoryId + '"]').offset().left);
-    //             }
-    //         }
-    //     });
-    // });
+    $(window).scroll(function () {
+        var position = $(this).scrollTop();
+        $('.category-items-container').each(function () {
+            if (position + 500 > $(this).position().top) {
+                var categoryId = $(this).attr('id');
+                if (!$('a[href="#' + categoryId + '"]').hasClass('active')) {
+                    $('.categorySwitch').removeClass('active');
+                    $('a[href="#' + categoryId + '"]').addClass('active');
+                    $('ul.nav-tabs').scrollLeft($('a[href="#' + categoryId + '"]').offset().left);
+                }
+            }
+        });
+    });
 </script>
 @stack('js')
 </html>

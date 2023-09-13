@@ -14,6 +14,7 @@ class Cart extends Model
 {
     use HasFactory;
 
+    public $incrementing = false;
     protected $fillable = ['id', 'cookie_id', 'product_id', 'quantity', 'options'];
 
     protected static function booted()
@@ -34,8 +35,8 @@ class Cart extends Model
         return $cookie_id;
     }
 
-    public function product(): BelongsTo
+    public function products(): BelongsTo
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }

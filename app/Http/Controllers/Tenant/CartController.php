@@ -59,8 +59,9 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-
+        $this->cart->delete($request->route('cart'));
+        return redirect()->back()->with('success', 'Deleted Successfully');
     }
 }

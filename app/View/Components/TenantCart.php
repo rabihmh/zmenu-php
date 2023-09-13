@@ -2,21 +2,24 @@
 
 namespace App\View\Components;
 
-use App\Repositories\Cart\CartRepository;
+use App\Facades\Cart;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class TenantCart extends Component
 {
+    public $items;
+    public $total;
+
     /**
      * Create a new component instance.
      */
-    public CartRepository $cart;
 
-    public function __construct(CartRepository $cartRepository)
+    public function __construct()
     {
-        $this->cart = $cartRepository;
+        $this->items = Cart::get();
+        $this->total=Cart::total();
     }
 
     /**

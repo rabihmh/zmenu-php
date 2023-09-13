@@ -26,10 +26,10 @@
                                     <p>Quantity</p>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-12">
-                                    <p>Subtotal</p>
+                                    <p>Price</p>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-12">
-                                    <p>Discount</p>
+                                    <p>Subtotal</p>
                                 </div>
                                 <div class="col-lg-1 col-md-2 col-12">
                                     <p>Remove</p>
@@ -37,52 +37,45 @@
                             </div>
                         </div>
 
-                        @foreach($cart->get() as $cart)
+                        @foreach($items as $item)
                             <div class="cart-single-list">
                                 <div class="row align-items-center">
                                     <div class="col-lg-1 col-md-1 col-12">
-                                        <a href="product-details.html"><img
-                                                src="https://demo.graygrids.com/themes/shopgrids/assets/images/cart/01.jpg"
+                                        <a href="#"><img
+                                                src="{{asset('storage/'.$item->products->photo)}}"
                                                 alt="#"></a>
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-12">
-                                        <h5 class="product-name"><a href="product-details.html">
-                                                Canon EOS M50 Mirrorless Camera</a></h5>
-                                        <p class="product-des">
-                                            <span><em>Type:</em> Mirrorless</span>
-                                            <span><em>Color:</em> Black</span>
-                                        </p>
+                                        <h5 class="product-name"><a href="#">{{$item->products->name}}</a></h5>
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-12">
                                         <div class="count-input">
-                                            <select class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
+                                            <input type="number" value="{{$item->quantity}}" disabled>
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-12">
-                                        <p>$910.00</p>
+                                        <p>${{$item->products->price}}</p>
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-12">
-                                        <p>$29.00</p>
+                                        <p>${{$item->products->price * $item->quantity}}</p>
                                     </div>
                                     <div class="col-lg-1 col-md-2 col-12">
-                                        <a class="remove-item" href="javascript:void(0)"><i
-                                                class="fas fa-times fa-lg"></i></a>
+                                        <form method="POST"
+                                            action="{{route('tenant.cart.destroy',['tenant'=>getSubdomain(),'table_number' => request()->route('table_number'),'cart'=>$item->id])}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button style="margin-left: 5px;margin-top: 0px" type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
-
+<span>Total: ${{$total}}</span>
                     </div>
                 </div>
             </div>
             <!--/ End Shopping Cart -->
-            ${{\App\Facades\CartFacade::total()}}
+
         </div>
     </div>
     <!-- dialog -->

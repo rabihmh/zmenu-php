@@ -1,5 +1,20 @@
 $(document).ready(function () {
     $('.big>div.loader').show();
+    function showSwalNotificationInModal(title, text, icon) {
+        const swalContainer = $('#sweetAlertContainer');
+
+        Swal.fire({
+            title: title,
+            text: text,
+            icon: icon,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            swalContainer.empty();
+        });
+
+        swalContainer.appendTo($('.itemModalContent'));
+    }
 
     // Function to load menu items
     function loadMenuItems() {
@@ -145,11 +160,16 @@ $(document).ready(function () {
                     </div>
                 </div>
             </div>
+
             <div class="itemInfoContent">
                 ${descriptionHtml}
                 ${ratingsHtml}
-            </div>
- <div><a href="#" id="addToCartButton" data-id="${product.id}" class="btn btn-primary">Add to Cart</a></div>`;
+                 <div style="margin-bottom: 10px">
+                    <label for="name" class="form-label">Quantity</label>
+                    <input type="number" class="form-control" id="quantity" placeholder="Enter qauntity">
+                </div>
+                <div class="text-center"><a href="#" id="addToCartButton" data-id="${product.id}" class="btn btn-success ">Add to Cart</a></div>
+            </div>`;
 
 
         $('#itemMoreInfo .modal-body .loader').hide();
@@ -158,22 +178,31 @@ $(document).ready(function () {
 
         $('#addToCartButton').click(function () {
             const productId = $(this).data('id');
-
+            let quantity=$('#quantity').val();
+            let cartitemcount = $('#cartItemCount').val();
             $.ajax({
                 method: 'POST',
                 url: addToCartRoute,
                 headers: {
                     'X-CSRF-TOKEN': csrfToken
                 },
-                data: {product_id: productId, quantity: 1},
+                data: {product_id: productId, quantity: quantity},
                 success: function (response) {
-                    // Handle the success response from the server
-                    console.log('Item added to cart with ID:', productId);
-                    console.log('Server response:', response);
+                    cartitemcount += 1;
+                    $('#itemMoreInfo').modal('hide');
+
+                    showSwalNotificationInModal('Success', 'Item added to cart!', 'success');
+
                 },
                 error: function (error) {
-                    // Handle any errors that occur during the AJAX request
-                    console.error('Error adding item to cart:', error);
+                    $('#itemMoreInfo').modal('hide');
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'An error occurred while adding the item to cart.',
+                        icon: 'error',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    });
                 }
             });
         });
