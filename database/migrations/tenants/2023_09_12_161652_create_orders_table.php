@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,6 +12,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('table_id')->constrained('tables')->cascadeOnDelete();
+            $table->string('number')->unique();
+            $table->enum('status', ['pending', 'completed', 'canceled',])->default('pending');
+            $table->float('total')->default(0);
             $table->timestamps();
         });
     }

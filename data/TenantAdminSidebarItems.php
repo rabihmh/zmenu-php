@@ -6,6 +6,11 @@ return [
         'label' => 'Dashboard'
     ],
     [
+        'route' => 'tenant.admin.notifications.index',
+        'icon' => 'fas fa-fw fa-bell',
+        'label' => 'Notifications'
+    ],
+    [
         'route' => 'tenant.admin.restaurant.show',
         'icon' => 'fas fa-fw fa-shopping-bag',
         'label' => 'Restaurant'

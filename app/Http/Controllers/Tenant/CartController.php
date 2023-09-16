@@ -23,8 +23,6 @@ class CartController extends Controller
     {
         $items = $this->cart->get();
     }
-
-
     /**
      * Store a newly created resource in storage.
      */

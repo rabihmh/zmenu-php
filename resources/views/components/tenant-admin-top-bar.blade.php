@@ -63,7 +63,7 @@
                 </h6>
                 <div class="main-notification-list"></div>
                 @forelse($notifications as $notification)
-                    <a class="dropdown-item d-flex align-items-center" href="/?notification_id={{$notification->id}}">
+                    <a class="dropdown-item d-flex align-items-center" href="{{json_decode($notification->data)->url}}/?notification_id={{$notification->id}}">
                         <div class="mr-3">
                             <div class="icon-circle bg-success">
                                 <i class="fas fa-info text-white"></i>
@@ -78,7 +78,7 @@
                 @empty
 
                 @endforelse
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All
+                <a class="dropdown-item text-center small text-gray-500" href="{{route('tenant.admin.notifications.index')}}">Show All
                     Alerts</a>
             </div>
         </li>

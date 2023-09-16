@@ -36,7 +36,7 @@ class QrCodeService
                 ->encoding('UTF-8')
                 ->errorCorrection('L')
                 ->merge("/public/storage/$restaurant->profile_photo", .2)
-                ->generate("$restaurant->domain/table/$table_number");
+                ->generate("$restaurant->domain/table/$table_number/menu");
 
             $path = "uploads/$restaurant_name/qrCodes/qrCode_table_$table_number.png";
             Storage::disk('public')->put($path, $qrCode);

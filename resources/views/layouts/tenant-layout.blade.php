@@ -52,6 +52,7 @@
         @endforeach
     </ul>
 </header>
+@include('layouts.flash-message')
 
 <div class="big">
     {{$slot}}
@@ -128,7 +129,8 @@
 <div class="cartParent">
     <a class="cartButton float" href="#" style="background-color: #555;">
         <i class="fa fa-shopping-cart my-float"></i>
-        <span id="cartItemCount">{{\App\Facades\Cart::get()->count()}}</span> <!-- This span will display the product count -->
+        <span id="cartItemCount">{{\App\Facades\Cart::get()->count()}}</span>
+        <!-- This span will display the product count -->
 
     </a>
 </div>

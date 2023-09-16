@@ -52,7 +52,7 @@ class RestaurantController extends Controller
             $user->save();
             event(new RestaurantCreatedEvent($restaurant));
             DB::commit();
-            return redirect()->back()->with('success', 'Restaurant created successfully');
+            return redirect()->route('tenant.admin.restaurant.show')->with('success', 'Restaurant created successfully');
         } catch (Exception $exception) {
             DB::rollBack();
             throw $exception;

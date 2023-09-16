@@ -19,7 +19,11 @@ Broadcast::channel('customer.seated.restaurant.{restaurant_id}', function ($user
     return false;
 });
 
-
+Broadcast::channel('order.created.restaurant.{restaurant_id}', function ($user, $restaurant_id) {
+    if ($user->restaurant->id == $restaurant_id)
+        return true;
+    return false;
+});
 
 
 

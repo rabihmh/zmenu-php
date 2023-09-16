@@ -2,12 +2,12 @@
 
 namespace App\View\Components;
 
-use App\Models\Category;
 use App\Models\Restaurant;
 use Closure;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\Component;
 
 class TenantLayout extends Component
@@ -23,7 +23,8 @@ class TenantLayout extends Component
      */
     public function __construct()
     {
-        $this->categories = Category::all();
+        $this->categories = Cache::get('categories');
+
         $this->restaurant = app()->make('restaurant.active');
     }
 
@@ -32,9 +33,9 @@ class TenantLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('layouts.tenant-layout',[
-            'categories'=>$this->categories,
-            'restaurant'=>$this->restaurant
+        return view('layouts.tenant-layout', [
+            'categories' => $this->categories,
+            'restaurant' => $this->restaurant
         ]);
     }
 }

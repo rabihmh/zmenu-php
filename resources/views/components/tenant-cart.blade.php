@@ -61,16 +61,24 @@
                                     </div>
                                     <div class="col-lg-1 col-md-2 col-12">
                                         <form method="POST"
-                                            action="{{route('tenant.cart.destroy',['tenant'=>getSubdomain(),'table_number' => request()->route('table_number'),'cart'=>$item->id])}}">
+                                              action="{{route('tenant.cart.destroy',['tenant'=>getSubdomain(),'table_number' => request()->route('table_number'),'cart'=>$item->id])}}">
                                             @csrf
                                             @method('DELETE')
-                                            <button style="margin-left: 5px;margin-top: 0px" type="submit" class="btn btn-danger">Delete</button>
+                                            <button style="margin-left: 5px;margin-top: 0px" type="submit"
+                                                    class="btn btn-danger">Delete
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
-<span>Total: ${{$total}}</span>
+                        <span>Total: ${{$total}}</span>
+                        <form
+                            action="{{route('tenant.checkout',['tenant'=>getSubdomain(),'table_number' => request()->route('table_number')])}}"
+                            method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Checkout</button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -8,31 +8,34 @@ use App\Models\Category;
 use App\Traits\DeleteImageTrait;
 use App\Traits\UploadImageTrait;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 
 class CategoriesController extends Controller
 {
     use UploadImageTrait, DeleteImageTrait;
 
-    public function index()
+    public function index(): View
     {
-        $categories = Category::all();
+        $categories = Cache::rememberForever('categories', function () {
+            return Category::all();
+        });
         return view('tenantadmin.categories.index', compact('categories'));
     }
 
-    public function create()
+    public function create(): View
     {
         return view('tenantadmin.categories.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     * @throws ValidationException
      * @throws BindingResolutionException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         {
             $validatedData = $request->validate([
@@ -56,7 +59,7 @@ class CategoriesController extends Controller
         }
     }
 
-    public function edit(string $id)
+    public function edit(string $id): View
     {
         $category = Category::findOrFail($id);
 
@@ -67,7 +70,7 @@ class CategoriesController extends Controller
      * Update the specified resource in storage.
      * @throws BindingResolutionException
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
         $category = Category::findOrFail($id);
         $request->validate([
@@ -89,7 +92,7 @@ class CategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
         $category = Category::findOrFail($id);
         if ($category->photo) {
