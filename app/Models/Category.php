@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Observers\CartObserver;
+use App\Observers\CategoryObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,7 +15,7 @@ class Category extends Model
 
     protected static function booted()
     {
-        static::observe(new CartObserver());
+        static::observe(CategoryObserver::class);
     }
 
     public function products(): HasMany

@@ -22,22 +22,26 @@ class MarkNotificationAsRead
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $notification_id = trim($request->query('notification_id'), "'");
-        if ($notification_id) {
-            DatabaseManager::switchConnection(TenantDataManger::getTenantRestaurant()->database_options['db_name']);
-            $notification = DB::connection('tenant')
-                ->table('notifications')
-                ->where('id', $notification_id)
-                ->first();
-
-            if ($notification) {
-                DB::connection('tenant')
+        $notification_id = $request->query('notification_id');
+        if ($notification_id !== null) {
+            $notification_id = trim($notification_id, "'");
+            if ($notification_id) {
+                DatabaseManager::switchConnection(TenantDataManger::getTenantRestaurant()->database_options['db_name']);
+                $notification = DB::connection('tenant')
                     ->table('notifications')
                     ->where('id', $notification_id)
-                    ->update(['read_at' => now()]);
+                    ->first();
+
+                if ($notification) {
+                    DB::connection('tenant')
+                        ->table('notifications')
+                        ->where('id', $notification_id)
+                        ->update(['read_at' => now()]);
+                }
+                DatabaseManager::switchBackToMainConnection();
             }
-            DatabaseManager::switchBackToMainConnection();
         }
         return $next($request);
     }
+
 }

@@ -18,9 +18,13 @@ class CategoriesController extends Controller
 {
     use UploadImageTrait, DeleteImageTrait;
 
+    /**
+     * @throws BindingResolutionException
+     */
     public function index(): View
     {
-        $categories = Cache::rememberForever('categories', function () {
+        $restaurant_id = TenantDataManger::getTenantRestaurant()->id;
+        $categories = Cache::rememberForever('categories_' . $restaurant_id, function () {
             return Category::all();
         });
         return view('tenantadmin.categories.index', compact('categories'));

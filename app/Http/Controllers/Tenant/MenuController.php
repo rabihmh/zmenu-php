@@ -19,13 +19,13 @@ class MenuController extends Controller
         $tableNumber = $request->route('table_number');
 
         // Check if the customer is already seated (using a session variable)
-        //if (!$request->session()->has('customer_seated_' . $tableNumber)) {
+        if (!$request->session()->has('customer_seated_' . $tableNumber)) {
             $table = Table::where('table_number', $tableNumber)->first();
             event(new CustomerSeated($table));
 
             // Mark the customer as seated in the session
             $request->session()->put('customer_seated_' . $tableNumber, true);
-        //}
+        }
 
         return view('tenant.menu.index');
     }

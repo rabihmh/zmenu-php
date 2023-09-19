@@ -11,6 +11,7 @@ use App\Traits\UploadImageTrait;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class ProductsController extends Controller
@@ -28,10 +29,14 @@ class ProductsController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @throws BindingResolutionException
      */
     public function create()
     {
-        $categories = Category::query()->select('id', 'slug')->get();
+        $restaurant_id = TenantDataManger::getTenantRestaurant()->id;
+
+        $categories = Cache::get('categories_' . $restaurant_id);
+        //$categories = Category::query()->select('id', 'slug')->orderBy('id','ASC')->get();
         return view('tenantadmin.products.create', compact('categories'));
     }
 

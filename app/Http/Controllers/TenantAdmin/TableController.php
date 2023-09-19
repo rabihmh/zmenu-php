@@ -58,10 +58,10 @@ class TableController extends Controller
             $table->qr_code_path = $qrCodePath;
             $table->save();
 
-            return redirect()->back(201)->with('success', 'Table Created Successfully');
+            return redirect()->back()->with('success', 'Table Created Successfully');
         } catch (\Exception $e) {
             Log::error("Table creation error: " . $e->getMessage());
-            return redirect()->back(500)->with('success', 'Table Created Successfully');
+            return redirect()->back()->with('error', 'An error occurring during creation table');
         }
     }
 
