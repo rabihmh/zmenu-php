@@ -20,10 +20,14 @@ class ProductsController extends Controller
 
     /**
      * Display a listing of the resource.
+     * @throws BindingResolutionException
      */
     public function index()
     {
-        $products = Product::with('category:id,name')->get();
+        $restaurant_id = TenantDataManger::getTenantRestaurant()->id;
+        $products = Cache::rememberForever('products_with_category_' . $restaurant_id, function () {
+            return Product::with('category:id,name')->get();
+        });
         return view('tenantadmin.products.index', compact('products'));
     }
 
@@ -64,7 +68,7 @@ class ProductsController extends Controller
         $productsData = $request->except('photo');
 
         if ($request->hasFile('photo')) {
-            $image_path = $this->uploadImage($request->file('photo'),Str::slug(TenantDataManger::getTenantRestaurant()->name));
+            $image_path = $this->uploadImage($request->file('photo'), Str::slug(TenantDataManger::getTenantRestaurant()->name));
             $productsData['photo'] = $image_path;
         }
 
@@ -102,7 +106,7 @@ class ProductsController extends Controller
         $product_data = $request->except('photo');
         if ($request->hasFile('photo')) {
             $this->deleteImage($product->photo);
-            $newImagePath = $this->uploadImage($request->file('photo'),Str::slug(TenantDataManger::getTenantRestaurant()->name));
+            $newImagePath = $this->uploadImage($request->file('photo'), Str::slug(TenantDataManger::getTenantRestaurant()->name));
             $product_data['photo'] = $newImagePath;
         }
         $product->update($product_data);

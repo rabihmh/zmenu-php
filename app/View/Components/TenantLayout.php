@@ -23,9 +23,8 @@ class TenantLayout extends Component
      */
     public function __construct()
     {
-        $this->categories = Cache::get('categories');
-
         $this->restaurant = app()->make('restaurant.active');
+        $this->categories = Cache::get('categories_' . $this->restaurant->id);
     }
 
     /**

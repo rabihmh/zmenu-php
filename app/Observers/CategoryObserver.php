@@ -10,9 +10,11 @@ class CategoryObserver
     /**
      * Handle the Category "created" event.
      */
+
+
     public function created(Category $category): void
     {
-        Cache::forget('categories');
+        Cache::forget('categories_');
     }
 
     /**
