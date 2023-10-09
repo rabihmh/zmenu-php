@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Repositories\Cart\CartRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class CartController extends Controller
 {
@@ -19,14 +21,16 @@ class CartController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         $items = $this->cart->get();
+        return view('tenant.cart.index', compact('items'));
     }
+
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $request->validate([
             'product_id' => 'required|int|exists:products,id',
@@ -43,14 +47,15 @@ class CartController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         $request->validate([
-            'product_id' => 'required|int|exists:products,id',
             'quantity' => 'nullable|int|min:1'
         ]);
-        $product = Product::findOrFail($request->post('product_id'));
-        $this->cart->update($product, $request->post('quantity'));
+        $this->cart->update($request->route('cart'), $request->post('quantity'));
+        return response()->json([
+            'message' => 'Cart item updated',
+        ]);
 
     }
 
@@ -60,6 +65,8 @@ class CartController extends Controller
     public function destroy(Request $request, string $id)
     {
         $this->cart->delete($request->route('cart'));
-        return redirect()->back()->with('success', 'Deleted Successfully');
+        return response()->json([
+            'message' => 'Deleted Successfully',
+        ]);
     }
 }

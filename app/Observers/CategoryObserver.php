@@ -14,7 +14,7 @@ class CategoryObserver
 
     public function created(Category $category): void
     {
-        Cache::forget('categories_');
+        Cache::forget('categories');
     }
 
     /**

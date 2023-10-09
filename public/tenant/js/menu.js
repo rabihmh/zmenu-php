@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $('.big>div.loader').show();
+
     function showSwalNotificationInModal(title, text, icon) {
         const swalContainer = $('#sweetAlertContainer');
 
@@ -178,8 +179,7 @@ $(document).ready(function () {
 
         $('#addToCartButton').click(function () {
             const productId = $(this).data('id');
-            let quantity=$('#quantity').val();
-            let cartitemcount = $('#cartItemCount').val();
+            let quantity = $('#quantity').val();
             $.ajax({
                 method: 'POST',
                 url: addToCartRoute,
@@ -188,7 +188,10 @@ $(document).ready(function () {
                 },
                 data: {product_id: productId, quantity: quantity},
                 success: function (response) {
-                    cartitemcount += 1;
+                    let cartItemCount = parseInt($('#cartItemCount').text());
+                    cartItemCount += 1;
+                    $('#cartItemCount').text(cartItemCount);
+
                     $('#itemMoreInfo').modal('hide');
 
                     showSwalNotificationInModal('Success', 'Item added to cart!', 'success');

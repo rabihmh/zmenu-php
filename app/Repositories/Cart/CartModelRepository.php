@@ -18,7 +18,7 @@ class CartModelRepository implements CartRepository
     public function get(): Collection
     {
         if (!$this->items->count()) {
-            $this->items = Cart::with('products')->get();
+            $this->items = Cart::with('product')->get();
         }
         return $this->items;
     }
@@ -65,7 +65,7 @@ class CartModelRepository implements CartRepository
 //            ->selectRaw('SUM(products.price * carts.quantity) as total')
 //            ->value('total');
         return (float)$this->get()->sum(function ($item) {
-            return $item->products->price * $item->quantity;
+            return $item->product->price * $item->quantity;
         });
     }
 

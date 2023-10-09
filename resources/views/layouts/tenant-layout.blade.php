@@ -52,8 +52,6 @@
         @endforeach
     </ul>
 </header>
-@include('layouts.flash-message')
-
 <div class="big">
     {{$slot}}
     <div class="loader splash" style="display: none;"></div>
@@ -122,16 +120,14 @@
     </a>
 </div>
 <!--End Branch div-->
-<!--Cart Modal-->
-<x-tenant-cart/>
-<!--End Card Modal-->
+
 <!-- Cart div -->
 <div class="cartParent">
-    <a class="cartButton float" href="#" style="background-color: #555;">
+    <a class="cartButton float"
+       href="{{route('tenant.cart.index', ['table_number' => request()->route('table_number'), 'tenant' => getSubdomain()])}}"
+       style="background-color: #555;">
         <i class="fa fa-shopping-cart my-float"></i>
         <span id="cartItemCount">{{\App\Facades\Cart::get()->count()}}</span>
-        <!-- This span will display the product count -->
-
     </a>
 </div>
 <!-- End Cart div -->
@@ -174,10 +170,6 @@
     $('.branchesInfo').off('click').on('click', function () {
         $('#branchesInfo').modal('show');
     });
-    $('.cartButton').off('click').on('click', function () {
-        $('#cartModal').modal('show');
-    });
-
     // if (localStorage.getItem('customerId') != null) {
     //     $.ajax({
     //         method: 'GET',
@@ -209,5 +201,17 @@
         });
     });
 </script>
+<script>
+    window.flashMessages = {!! json_encode([
+        'success' => session('success'),
+        'error' => session('error'),
+        'warning' => session('warning'),
+        'info' => session('info'),
+        'status' => session('status'),
+    ]) !!};
+</script>
+
+@vite(['resources/js/flash-message.js'])
+
 @stack('js')
 </html>
