@@ -25,8 +25,11 @@ class CheckoutController extends Controller
         try {
             $order = Order::create([
                 'table_id' => $table->id,
-                'total' => Cart::total()
+                'total' => Cart::total(),
+                'status' => 'pending'
             ]);
+            $order->load('table');
+
             foreach ($items as $item) {
                 OrderItem::create([
                     'order_id' => $order->id,

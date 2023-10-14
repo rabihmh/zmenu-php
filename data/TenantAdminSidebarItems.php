@@ -39,5 +39,12 @@ return [
             ['url' => 'tenant.admin.tables.create', 'label' => 'Create'],
         ]
     ],
+    [
+        'icon' => 'fas fa-utensils',
+        'label' => 'Orders',
+        'submenu' => [
+            ['url' => 'tenant.admin.orders.index', 'label' => 'index'],
+        ]
+    ],
 
 ];

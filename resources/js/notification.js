@@ -31,8 +31,6 @@ channel1.listen('.customer-seat', function (data) {
 let channel2 = Echo.private(`order.created.restaurant.${restaurant_id}`);
 channel2.listen('.order-create', function (data) {
     updateNotificationDropdown(data);
-    // You can also handle additional logic specific to order-create events here.
-    alert(data.url);
 });
 /*
 channel.notification((notification) => {});

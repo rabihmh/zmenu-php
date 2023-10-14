@@ -31,5 +31,6 @@ class NotifyAdminOnCustomerSeated
         $table->update([
             'status' => 'occupied'
         ]);
+        $table->save();
     }
 }

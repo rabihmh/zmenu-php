@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Order extends Model
 {
@@ -18,7 +19,7 @@ class Order extends Model
         return $this->belongsTo(Table::class, 'table_id');
     }
 
-    public function products()
+    public function products(): BelongsToMany
     {
         return $this->belongsToMany(
             Product::class,
@@ -29,7 +30,7 @@ class Order extends Model
             'id'
         )->using(OrderItem::class)->as('order_item')
             ->withPivot([
-                'product_name', 'price', 'quantity', 'options'
+                'price', 'quantity', 'options'
             ]);
     }
 

@@ -8,6 +8,7 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/js/flash-message.js',
+                'resources/js/OrderQueue.js',
             ],
             refresh: true,
         }),

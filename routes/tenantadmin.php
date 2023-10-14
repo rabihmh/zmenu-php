@@ -3,6 +3,7 @@
 use App\Http\Controllers\TenantAdmin\CategoriesController;
 use App\Http\Controllers\TenantAdmin\HomeController;
 use App\Http\Controllers\TenantAdmin\NotificationController;
+use App\Http\Controllers\TenantAdmin\OrdersController;
 use App\Http\Controllers\TenantAdmin\ProductsController;
 use App\Http\Controllers\TenantAdmin\RestaurantController;
 use App\Http\Controllers\TenantAdmin\TableController;
@@ -25,6 +26,8 @@ Route::group(['middleware' => ['auth:web', 'ensure.restaurant'], 'as' => 'tenant
         Route::resource('notifications', NotificationController::class)->only(['index', 'destroy']);
         Route::put('notifications/mark_all_read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllRead');
         Route::delete('notifications', [NotificationController::class, 'deleteAll'])->name('notifications.deleteAll');
+        Route::resource('orders', OrdersController::class)->except(['create', 'store']);
+        Route::put('mark-order-complete/{order}', [OrdersController::class, 'markAsComplete'])->name('orders.mark.as.complete');
     });
 
 });

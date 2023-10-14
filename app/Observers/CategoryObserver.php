@@ -2,7 +2,9 @@
 
 namespace App\Observers;
 
+use App\Managers\TenantDataManger;
 use App\Models\Category;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\Cache;
 
 class CategoryObserver
@@ -10,11 +12,19 @@ class CategoryObserver
     /**
      * Handle the Category "created" event.
      */
+    private string $restaurant_id;
 
+    /**
+     * @throws BindingResolutionException
+     */
+    public function __construct()
+    {
+        $this->restaurant_id = TenantDataManger::getTenantRestaurant()->id;
+    }
 
     public function created(Category $category): void
     {
-        Cache::forget('categories');
+        Cache::forget('categories_' . $this->restaurant_id);
     }
 
     /**
@@ -22,7 +32,7 @@ class CategoryObserver
      */
     public function updated(Category $category): void
     {
-        Cache::forget('categories');
+        Cache::forget('categories_' . $this->restaurant_id);
 
     }
 
@@ -31,7 +41,7 @@ class CategoryObserver
      */
     public function deleted(Category $category): void
     {
-        Cache::forget('categories');
+        Cache::forget('categories_' . $this->restaurant_id);
 
     }
 

@@ -52,6 +52,7 @@ class OrderCreatedNotification extends Notification
 
     public function toBroadcast(object $notifiable): BroadcastMessage
     {
+
         $table = Table::findOrfail($this->order->table_id);
         $message = "New Order Created on the table #{$table->table_number}";
         $id = Str::uuid();
@@ -67,6 +68,7 @@ class OrderCreatedNotification extends Notification
             'updated_at' => now(),
         ]);
         return new BroadcastMessage([
+            'order' => $this->order,
             'message' => $message,
             'notification_id' => $id,
             'created_at' => now(),
