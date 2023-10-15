@@ -4,18 +4,31 @@ namespace App\Http\Controllers\TenantAdmin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 
 class OrdersController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         $orders = Order::query()
-            ->with(['table', 'products'],)
+            ->with(['table', 'products'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(15);
+        return view('tenantadmin.orders.index', compact('orders'));
+    }
+
+    public function queue(): View
+    {
+        $orders = Order::query()
+            ->with(['table', 'products'])
             ->where('status', 'pending')
             ->orderBy('created_at', 'desc')
             ->get();
@@ -32,36 +45,35 @@ class OrdersController extends Controller
         return view('tenantadmin.orders.show', compact('order'));
     }
 
-    public function markAsComplete(string $id): JsonResponse
+    public function markOrderAs(Request $request, string $id): JsonResponse
     {
         $order = Order::findOrFail($id);
-        $order->status = 'completed';
+
+        $validatedData = $request->validate([
+            'status' => [
+                'required',
+                Rule::in(['completed', 'canceled', 'prepared']),
+            ],
+        ]);
+
+        $order->status = $validatedData['status'];
         $order->save();
-        return response()->json(['message' => 'Order marked as complete']);
 
+        return response()->json(['message' => "Order marked as {$validatedData['status']}"], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        //
-    }
+        $order = Order::findOrFail($id);
+        $orderItems = OrderItem::where('order_id', $id)->get();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        if (!$orderItems->isEmpty()) {
+            foreach ($orderItems as $item) {
+                $item->delete();
+            }
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $order->delete();
+        return redirect()->back()->with('success', 'Order deleted successfully');
     }
 }

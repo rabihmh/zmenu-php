@@ -28,8 +28,6 @@ class CheckoutController extends Controller
                 'total' => Cart::total(),
                 'status' => 'pending'
             ]);
-            $order->load('table');
-
             foreach ($items as $item) {
                 OrderItem::create([
                     'order_id' => $order->id,
@@ -38,6 +36,8 @@ class CheckoutController extends Controller
                     'quantity' => $item->quantity,
                 ]);
             }
+            $order->load(['table', 'products']);
+
             DB::commit();
             event(new OrderCreate($order));
         } catch (\Throwable $exception) {

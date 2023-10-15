@@ -70,11 +70,13 @@
 <script src="{{ asset('dashboard/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('dashboard/js/sb-admin-2.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script src="{{ asset('dashboard/js/demo/moment.js') }}"></script>
 <script>
     const restaurant_id = '{{\App\Managers\TenantDataManger::getTenantRestaurant()->id??null}}';
 </script>
-@vite(['resources/js/app.js'])
+@vite(['resources/js/app.js','resources/js/notification.js'])
 @stack('js')
 </body>
 

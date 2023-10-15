@@ -25,6 +25,7 @@ class HomeController extends Controller
 
         $ordersCountByStatus = Order::query()
             ->select('status', DB::raw('COUNT(*) as count'))
+            ->whereMonth('created_at', $now->month)
             ->groupBy('status')
             ->get();
         $orders_count = $ordersCountByStatus->sum('count');

@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('table_id')->constrained('tables')->cascadeOnDelete();
             $table->string('number')->unique();
-            $table->enum('status', ['pending', 'completed', 'canceled',])->default('pending');
+            $table->enum('status', ['pending', 'completed', 'prepared', 'canceled'])->default('pending');
             $table->float('total')->default(0);
             $table->timestamps();
         });

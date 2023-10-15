@@ -27,7 +27,8 @@ Route::group(['middleware' => ['auth:web', 'ensure.restaurant'], 'as' => 'tenant
         Route::put('notifications/mark_all_read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllRead');
         Route::delete('notifications', [NotificationController::class, 'deleteAll'])->name('notifications.deleteAll');
         Route::resource('orders', OrdersController::class)->except(['create', 'store']);
-        Route::put('mark-order-complete/{order}', [OrdersController::class, 'markAsComplete'])->name('orders.mark.as.complete');
+        Route::get('queue_order', [OrdersController::class, 'queue'])->name('orders.queue.order');
+        Route::put('mark-order/{order}', [OrdersController::class, 'markOrderAs'])->name('orders.mark.as');
     });
 
 });

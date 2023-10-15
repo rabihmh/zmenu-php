@@ -7,6 +7,7 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
+                'resources/js/notification.js',
                 'resources/js/flash-message.js',
                 'resources/js/OrderQueue.js',
             ],

@@ -44,6 +44,7 @@ return [
         'label' => 'Orders',
         'submenu' => [
             ['url' => 'tenant.admin.orders.index', 'label' => 'index'],
+            ['url' => 'tenant.admin.orders.queue.order', 'label' => 'Queue'],
         ]
     ],
 

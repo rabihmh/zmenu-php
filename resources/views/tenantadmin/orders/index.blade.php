@@ -76,14 +76,30 @@
                                 <tr class="cell-1">
                                     <td>#{{$order->number}}</td>
                                     <td>Table #{{$order->table->table_number}}</td>
-                                    <td><span class="badge badge-success">{{$order->status}}</span></td>
+                                    @if ($order->status === 'pending')
+                                        <td><span class="badge badge-primary">{{ucfirst($order->status)}}</span></td>
+
+                                    @elseif ($order->status === 'completed')
+                                        <td><span class="badge badge-success">{{ucfirst($order->status)}}</span></td>
+                                    @elseif ($order->status === 'canceled')
+                                        <td><span class="badge badge-danger">{{ucfirst($order->status)}}</span></td>
+
+                                    @elseif ($order->status === 'prepared')
+                                        <td><span class="badge badge-warning">{{ucfirst($order->status)}}</span></td>
+                                    @endif
                                     <td>${{$order->total}}</td>
                                     <td>{{ $order->created_at->diffForHumans() }}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-light" data-mdb-toggle="modal"
+                                    <td class="d-flex ">
+                                        <button type="button" class="btn btn-light mr-2" data-mdb-toggle="modal"
                                                 data-mdb-target="#Order_{{$order->id}}">
                                             <i class="fas fa-info me-2"></i> Get info
                                         </button>
+                                        <form id="{{$order->id}}" method="POST"
+                                              action="{{route('tenant.admin.orders.destroy',$order->id)}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -140,18 +156,15 @@
             </div>
         @endforeach
     </div>
-
+    <div class="d-flex justify-content-center">
+        {{$orders->withQueryString()->links()}}
+    </div>
     @push('js')
-        <script>
-            const routeShow = "{{ route('tenant.admin.orders.show', ':order_id') }}";
-        </script>
-        @vite(['resources/js/app.js','resources/js/OrderQueue.js'])
         <script>
             $(document).on('click', 'button[data-mdb-toggle="modal"]', function () {
                 let targetModal = $(this).data('mdb-target');
                 $(targetModal).modal('show');
             });
-
         </script>
     @endpush
 </x-tenant-admin-layout>
