@@ -30,9 +30,15 @@ class MenuController extends Controller
         return view('tenant.menu.index');
     }
 
-    public function list(): JsonResponse
+    public function list(Request $request): JsonResponse
     {
-        $products = Category::query()->select(['id', 'name', 'slug'])->with('products')->get();
+        $category_id = $request->get('categoryId');
+        Category::query()->findOr($category_id, function () {
+            return response()->json([
+                'message' => 'Category Not Fount'
+            ], 404);
+        });
+        $products = Product::query()->where('category_id', $category_id)->get();
         return response()->json([
             'products' => $products
         ], 200);
@@ -40,7 +46,6 @@ class MenuController extends Controller
 
     public function show(Request $request): JsonResponse
     {
-
         try {
             $product = Product::findOrFail($request->get('itemId'));
             return response()->json([

@@ -2,14 +2,21 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Str;
+
 trait UploadImageTrait
 {
-    public function uploadImage($image, $folder, $disk = 'public'): string
+    public function uploadImage($image, $mainFolder, $subfolder = null, $disk = 'public'): string
     {
+        if ($subfolder) {
+            $folder = "$mainFolder/$subfolder";
+        } else {
+            $folder = $mainFolder;
+        }
         $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $image->storeAs("uploads/{$folder}", $imageName, ['disk' => $disk]);
+        $folderPath = "uploads/$folder";
+        $image->storeAs($folderPath, $imageName, ['disk' => $disk]);
 
-        return "uploads/{$folder}/{$imageName}";
+        return "$folderPath/$imageName";
     }
-
 }

@@ -48,7 +48,7 @@ class CategoriesController extends Controller
             ]);
             $imagePath = null;
             if ($request->hasFile('photo')) {
-                $imagePath = $this->uploadImage($request->file('photo'), Str::slug(TenantDataManger::getTenantRestaurant()->name));
+                $imagePath = $this->uploadImage($request->file('photo'), Str::slug(TenantDataManger::getTenantRestaurant()->name), 'categories');
             }
 
             $category = new Category([
@@ -85,7 +85,7 @@ class CategoriesController extends Controller
         $category->slug = Str::slug($request->post('name'));
         if ($request->hasFile('photo')) {
             $this->deleteImage($category->photo);
-            $photo_path = $this->uploadImage($request->file('photo'), Str::slug(TenantDataManger::getTenantRestaurant()->name));
+            $photo_path = $this->uploadImage($request->file('photo'), Str::slug(TenantDataManger::getTenantRestaurant()->name), 'categories');
             $category->photo = $photo_path;
         }
         $category->save();

@@ -8,6 +8,8 @@ trait DeleteImageTrait
 {
     public function deleteImage($image): void
     {
-        Storage::disk('public')->delete($image);
+        if ($image) {
+            Storage::disk('public')->delete($image);
+        }
     }
 }

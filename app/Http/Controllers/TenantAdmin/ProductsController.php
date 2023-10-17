@@ -68,7 +68,7 @@ class ProductsController extends Controller
         $productsData = $request->except('photo');
 
         if ($request->hasFile('photo')) {
-            $image_path = $this->uploadImage($request->file('photo'), Str::slug(TenantDataManger::getTenantRestaurant()->name));
+            $image_path = $this->uploadImage($request->file('photo'), Str::slug(TenantDataManger::getTenantRestaurant()->name),'products');
             $productsData['photo'] = $image_path;
         }
 
@@ -106,7 +106,7 @@ class ProductsController extends Controller
         $product_data = $request->except('photo');
         if ($request->hasFile('photo')) {
             $this->deleteImage($product->photo);
-            $newImagePath = $this->uploadImage($request->file('photo'), Str::slug(TenantDataManger::getTenantRestaurant()->name));
+            $newImagePath = $this->uploadImage($request->file('photo'), Str::slug(TenantDataManger::getTenantRestaurant()->name),'products');
             $product_data['photo'] = $newImagePath;
         }
         $product->update($product_data);
@@ -124,7 +124,7 @@ class ProductsController extends Controller
             $this->deleteImage($product->photo);
         }
         $product->delete();
-        return redirect()->route('tenant.admin.categories.index')->with('info', 'Product deleted successfully');
+        return redirect()->route('tenant.admin.products.index')->with('info', 'Product deleted successfully');
 
     }
 }
