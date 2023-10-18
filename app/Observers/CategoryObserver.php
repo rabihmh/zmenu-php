@@ -24,7 +24,7 @@ class CategoryObserver
 
     public function created(Category $category): void
     {
-        Cache::forget('categories_' . $this->restaurant_id);
+        $this->clearCache($category->id);
     }
 
     /**
@@ -32,8 +32,7 @@ class CategoryObserver
      */
     public function updated(Category $category): void
     {
-        Cache::forget('categories_' . $this->restaurant_id);
-
+        $this->clearCache($category->id);
     }
 
     /**
@@ -41,23 +40,13 @@ class CategoryObserver
      */
     public function deleted(Category $category): void
     {
+        $this->clearCache($category->id);
+    }
+
+    private function clearCache($category_id): void
+    {
         Cache::forget('categories_' . $this->restaurant_id);
-
+        Cache::forget("products_of_category_" . $category_id . "_restaurant_" . $this->restaurant_id);
     }
 
-    /**
-     * Handle the Category "restored" event.
-     */
-    public function restored(Category $category): void
-    {
-        //
-    }
-
-    /**
-     * Handle the Category "force deleted" event.
-     */
-    public function forceDeleted(Category $category): void
-    {
-        //
-    }
 }

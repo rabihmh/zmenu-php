@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    $('ul.nav-tabs>li').first().find('a').trigger('click');
     const $categorySwitch = $('.categorySwitch');
     const $itemsListGrid = $('.items-list-grid');
     const $categoryTitle = $('.categoryTitle');
@@ -56,6 +55,7 @@ $(document).ready(function () {
             }
         });
     });
+    $('ul.nav-tabs>li').first().find('a').trigger('click');
 
     $(document).on('click', '.itemMoreInfo', function () {
         const itemId = $(this).data('id');

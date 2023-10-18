@@ -2,7 +2,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('tenant.admin.home')}}">
-        <div class="sidebar-brand-text mx-3">{{\App\Managers\TenantDataManger::getTenantRestaurant()->name}}</div>
+        <div class="sidebar-brand-text mx-3">{{\App\Managers\TenantDataManger::getTenantRestaurant()->name?? ""}}</div>
     </a>
 
     <!-- Divider -->

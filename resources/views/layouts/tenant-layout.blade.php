@@ -110,21 +110,6 @@
         <span id="cartItemCount">{{\App\Facades\Cart::get()->count()}}</span>
     </a>
 </div>
-{{--<div class="floatParent">--}}
-{{--    <a class="branchesInfo float" href="#" style="background-color: #555;">--}}
-{{--        <i class="fa fa-phone my-float"></i>--}}
-{{--    </a>--}}
-{{--    <a class="float cartButton"--}}
-{{--       href="{{route('tenant.cart.index', ['table_number' => request()->route('table_number'), 'tenant' => getSubdomain()])}}"--}}
-{{--       style="background-color: #555;">--}}
-{{--        <i class="fa fa-shopping-cart my-float"></i>--}}
-{{--        <span id="cartItemCount">{{\App\Facades\Cart::get()->count()}}</span>--}}
-{{--    </a>--}}
-{{--    --}}{{--    <a href="https://api.whatsapp.com/send?phone=+96176318226&text=Hey%2C+I+would+like+to+make+an+order+please."--}}
-{{--    --}}{{--       class="float" target="_blank">--}}
-{{--    --}}{{--        <i class="fa fa-whatsapp my-float"></i>--}}
-{{--    --}}{{--    </a>--}}
-{{--</div>--}}
 <!-- branches modal -->
 <div id="branchesInfo" class="modal animated bounceIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -184,7 +169,6 @@
 <script src="{{ asset('dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{asset('tenant/js/ads.js')}}"></script>
-<script src="{{asset('tenant/js/menu.js')}}"></script>
 <script>
     $('.branchesInfo').off('click').on('click', function () {
         $('#branchesInfo').modal('show');

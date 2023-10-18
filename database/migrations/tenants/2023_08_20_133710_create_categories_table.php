@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('photo')->nullable();
+            $table->string('photo')->default('uploads/item-default.jpeg	');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->string('photo');
+            $table->string('photo')->default('uploads/item-default.jpeg	');
             $table->float('price', 4, 2);
             $table->timestamps();
         });

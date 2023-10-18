@@ -24,12 +24,7 @@ class ProductObserver
      */
     public function created(Product $product): void
     {
-        Cache::forget('products_with_category_' . $this->restaurant_id);
-//        $restaurant_id = $this->restaurant_id;
-//        $cacheKey = 'products_with_category_' . $restaurant_id;
-//
-//         Remove the specific product from the cache
-//        Cache::tags([$cacheKey])->forget($product->id);
+        $this->clearCache($product->id,$product->category_id);
     }
 
     /**
@@ -37,8 +32,7 @@ class ProductObserver
      */
     public function updated(Product $product): void
     {
-        Cache::forget('products_with_category_' . $this->restaurant_id);
-
+        $this->clearCache($product->id,$product->category_id);
     }
 
     /**
@@ -46,23 +40,19 @@ class ProductObserver
      */
     public function deleted(Product $product): void
     {
+        $this->clearCache($product->id,$product->category_id);
+
+
+    }
+    /**
+     * @param $productId
+     * @param $categoryId
+     * @return void
+     */
+    private function clearCache($productId, $categoryId): void
+    {
         Cache::forget('products_with_category_' . $this->restaurant_id);
-
-    }
-
-    /**
-     * Handle the Product "restored" event.
-     */
-    public function restored(Product $product): void
-    {
-        //
-    }
-
-    /**
-     * Handle the Product "force deleted" event.
-     */
-    public function forceDeleted(Product $product): void
-    {
-        //
+        Cache::forget('product_' . $productId . '_restaurant_' . $this->restaurant_id);
+        Cache::forget("products_of_category_" . $categoryId . "_restaurant_" . $this->restaurant_id);
     }
 }

@@ -15,7 +15,7 @@
         <div class="mb-3">
             <label for="name" class="form-label">Category photo</label>
             <input type="file" class="form-control-file" name="photo">
-            <img width="100" src="{{asset('storage/uploads/'.$category->photo)}}">
+            <img width="100" src="{{asset('storage/'.$category->photo)}}">
         </div>
         @error('profile_photo')
         <span class="text-danger">{{$message}}</span>

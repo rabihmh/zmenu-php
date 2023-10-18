@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\CustomerSeated;
 use App\Events\OrderCreate;
 use App\Events\RestaurantCreatedEvent;
+use App\Listeners\EmptyCart;
 use App\Listeners\MigrateDatabaseListener;
 use App\Listeners\NotifyAdminOnCustomerSeated;
 use App\Listeners\SendNotificationToAdminOnOrderCreated;
@@ -31,7 +32,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         OrderCreate::class => [
             SendNotificationToAdminOnOrderCreated::class,
-            //EmptyCart::class,
+            EmptyCart::class,
         ]
 
     ];

@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Category;
 use App\Models\Restaurant;
 use Closure;
 use Illuminate\Contracts\Container\BindingResolutionException;
@@ -24,7 +25,8 @@ class TenantLayout extends Component
     public function __construct()
     {
         $this->restaurant = app()->make('restaurant.active');
-        $this->categories = Cache::get('categories_' . $this->restaurant->id);
+        $this->categories = Cache::get('categories_' . $this->restaurant->id) ?? Category::query()->get();
+
     }
 
     /**
