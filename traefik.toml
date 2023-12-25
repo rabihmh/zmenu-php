@@ -1,0 +1,20 @@
+[entryPoints]
+[entryPoints.http]
+address = ":80"
+
+[api]
+dashboard = true
+
+[providers.docker]
+exposedByDefault = false
+watch = true
+
+[http.routers]
+[http.routers.myapp]
+rule = "HostRegexp(`{subdomain:[a-z0-9]+}.zmenu.test`)"
+service = "php-service"
+
+[http.services]
+[http.services.php-service.loadBalancer]
+[[http.services.php-service.loadBalancer.servers]]
+url = "http://php_container:9000"
