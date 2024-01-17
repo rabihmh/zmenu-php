@@ -4,8 +4,8 @@ services:
   nginx:
     container_name: "${PROJECT_NAME}_nginx"
     build:
-      context: ./docker/nginx
-      dockerfile: Dockerfile
+      context: docker/nginx
+      dockerfile: nginx/Dockerfile
     depends_on:
       - app
     volumes:
@@ -27,8 +27,8 @@ services:
   app:
     container_name: "${PROJECT_NAME}_php"
     build:
-      context: ./docker/php
-      dockerfile: Dockerfile
+      context: docker/php
+      dockerfile: php/Dockerfile
     environment:
       PHP_MEMORY_LIMIT: '512M'
       COMPOSER_MEMORY_LIMIT: '-1'
